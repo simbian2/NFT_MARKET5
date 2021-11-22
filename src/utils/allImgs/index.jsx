@@ -118,6 +118,8 @@ import AsideWhiteCurved from '../../assets/img/curved-images/white-curved.jpeg'
 import ConnectWalletItemDetails from "../../assets/img/art/item-details.png"
 import ConnectWalleWhiteCurved from '../../assets/img/curved-images/white-curved.jpeg'
 
+import LogoPandoNft from '../../assets/img/logo-pando-nft.png'
+
 
 export {
 
@@ -238,4 +240,6 @@ export {
 	ConnectWalletItemDetails,
 	AsidelogoCt,
 	AsideWhiteCurved,
+
+  LogoPandoNft,
 }

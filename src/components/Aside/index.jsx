@@ -2,7 +2,7 @@ import SidenavHeader from './SidenavHeader';
 import NavbarCollapse from './NavbarCollapse';
 import SidenavFooter from './SidenavFooter';
 
-import { AsidelogoCt } from '../../utils/allImgs';
+import { LogoPandoNft } from '../../utils/allImgs';
 import { hideShowSidebar } from '../../utils';
 import data from '../../data/data-components/data-Aside.json';
 
@@ -14,7 +14,7 @@ const AsideContainer = () => {
         id="sidenav-main"
       >
         <SidenavHeader
-          AsidelogoCt={AsidelogoCt}
+          AsidelogoCt={LogoPandoNft}
           hideShowSidebar={hideShowSidebar}
         />
         <hr className="horizontal dark mt-0" />

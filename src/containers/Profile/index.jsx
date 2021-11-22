@@ -1,28 +1,31 @@
-import {useEffect}  from "react";
+import { useEffect } from 'react';
 
-import {data1 , data2 , data3} from '../../data/data-containers/data-Profile.js';
+import {
+  data1,
+  data2,
+  data3,
+} from '../../data/data-containers/data-Profile.js';
 
-import Navbar from '../../layouts/Head/Navbar'
+import Navbar from '../../layouts/Head/Navbar';
 
-import {ProfileBruce} from '../../utils/allImgs'
-import {getMainWidth , handelTitle} from '../../utils'
+import { ProfileBruce } from '../../utils/allImgs';
+import { getMainWidth, handleTitle } from '../../utils';
 
-import SecAvatar from './SecAvatar'
-import SecName from './SecName'
-import SecNavWrapper from './SecNavWrapper'
-import SecSettings from './SecSettings'
-import SecInformation from './SecInformation'
-import SecLatest from './SecLatest'
-import SecProjects from './SecProjects'
-import './Profile.css'
+import SecAvatar from './SecAvatar';
+import SecName from './SecName';
+import SecNavWrapper from './SecNavWrapper';
+import SecSettings from './SecSettings';
+import SecInformation from './SecInformation';
+import SecLatest from './SecLatest';
+import SecProjects from './SecProjects';
+import './Profile.css';
 
 const ProfileContainer = () => {
-
   useEffect(() => {
     // document.title = 'Profile'
-    handelTitle('Profile')
-    getMainWidth()
-  },[])  
+    handleTitle('Profile');
+    getMainWidth();
+  }, []);
 
   return (
     <>
@@ -34,19 +37,16 @@ const ProfileContainer = () => {
           </div>
           <div className="card card-body blur shadow-blur mx-4 mt-n6">
             <div className="row gx-4">
-
               <SecAvatar img={ProfileBruce} />
 
               <SecName />
 
               <SecNavWrapper />
-
             </div>
           </div>
         </div>
         <div className="container-fluid py-4 pb-0">
           <div className="row">
-
             <SecSettings data2={data2} data3={data3} />
 
             <div className="col-12 col-xl-4 col-lg-6 mt-s">
@@ -56,13 +56,11 @@ const ProfileContainer = () => {
             <SecLatest data1={data1} />
 
             <SecProjects />
-
           </div>
         </div>
       </div>
     </>
   );
-}
+};
 
 export default ProfileContainer;
-

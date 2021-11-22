@@ -1,4 +1,4 @@
-function ITag({ClassName}){
-  return <i className={ClassName}></i>
+function ITag({ ClassName, onClick }) {
+  return <i className={ClassName} onClick={onClick}></i>;
 }
-export default ITag
+export default ITag;
