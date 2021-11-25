@@ -1,13 +1,29 @@
+import { useEtherBalance, useEthers } from '@usedapp/core';
 import { NavLink } from 'react-router-dom';
 import ITag from '../../../../components/ITag';
 
 function SecNavItem({ hideShowSidebar }) {
+  const { activateBrowserWallet, deactivate, account } = useEthers();
+  const etherBalance = useEtherBalance(account);
+
   return (
     <>
       <li className="nav-item d-flex align-items-center">
-        <NavLink to="/" className="btn btn-white bg-light mb-0 w-100">
-          Connect Wallet
-        </NavLink>
+        {account ? (
+          <button
+            className="btn btn-white bg-light mb-0 w-100"
+            onClick={() => deactivate()}
+          >
+            {account}
+          </button>
+        ) : (
+          <button
+            className="btn btn-white bg-light mb-0 w-100"
+            onClick={() => activateBrowserWallet()}
+          >
+            Connect Wallet
+          </button>
+        )}
         {/* <NavLink
           to="/signin"
           className="nav-link text-body font-weight-bold px-0"
