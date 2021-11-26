@@ -15,7 +15,9 @@ import { formatEther } from '@ethersproject/units';
 
 const config: Config = {
   readOnlyChainId:
-    process.env.NODE_ENV === 'development' ? ChainId.Localhost : ChainId.BSC,
+    process.env.NODE_ENV === 'development'
+      ? ChainId.Localhost
+      : ChainId.Rinkeby,
   readOnlyUrls: {
     [ChainId.Mainnet]:
       'https://mainnet.infura.io/v3/62687d1a985d4508b2b7a24827551934',
