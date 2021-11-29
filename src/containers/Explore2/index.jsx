@@ -31,7 +31,10 @@ const Explore2Container = () => {
 
         <div className="container-fluid">
           <div className="page-header breadcrumb-header min-height-300 border-radius-xl mt-4 mb-30 Explore2IMG">
-            <Breadcrumb text1="Explore Style 2" text2="Explore Style 2" />
+            <Breadcrumb
+              text1="About New Items"
+              text2="It is time to start your own new experience on NFT Store"
+            />
           </div>
         </div>
 

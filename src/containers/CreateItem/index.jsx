@@ -30,7 +30,10 @@ const CreateItemContainer = () => {
         <Navbar />
         <div className="container-fluid">
           <div className="page-header breadcrumb-header min-height-300 border-radius-xl mt-4 mb-30 CreateItemIMG">
-            <Breadcrumb text1="Create Item" text2="Create Item" />
+            <Breadcrumb
+              text1="Create Item"
+              text2="Create your own brand through your new artworks"
+            />
           </div>
         </div>
         <div className="container-fluid">

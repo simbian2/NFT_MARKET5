@@ -31,7 +31,10 @@ const ItemDetailsContainer = () => {
 
         <div className="container-fluid">
           <div className="page-header breadcrumb-header min-height-300 border-radius-xl mt-4 mb-30 ItemDetailsIMG">
-            <Breadcrumb text1="Item Details" text2="Item Details" />
+            <Breadcrumb
+              text1="Item Details"
+              text2={`Upload your own artwork the world has been\nwaiting for.`}
+            />
           </div>
         </div>
 

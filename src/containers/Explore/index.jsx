@@ -25,7 +25,10 @@ const ExploreContainer = () => {
 
         <div className="container-fluid">
           <div className="page-header breadcrumb-header min-height-300 border-radius-xl mt-4 mb-30 ExploreIMG">
-            <Breadcrumb text1="Explore Style 1" text2="Explore Style 1" />
+            <Breadcrumb
+              text1="Latest Items"
+              text2={`A new world where what gainings(you gain) through\nyour artworks become your real assets`}
+            />
           </div>
         </div>
 
