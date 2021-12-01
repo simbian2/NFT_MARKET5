@@ -25,13 +25,13 @@ const HomeContainer = () => {
         <Navbar />
         <MainHeader />
 
-        <SectionHeading
+        {/* <SectionHeading
           img={HomeIcon1}
           text="Our Top Creatives"
           title="Top Selling Authors"
         />
 
-        <SectionCard data1={data1} data2={data2} data3={data3} />
+        <SectionCard data1={data1} data2={data2} data3={data3} /> */}
 
         <SectionHeading
           img={HomeIcon2}
