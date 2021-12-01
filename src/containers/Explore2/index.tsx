@@ -45,7 +45,7 @@ const Explore2Container = () => {
             <div className="col-lg-4">
               <CardFilter data3={data3} data4={data4} />
 
-              <CardTopSelling data={data2} />
+              {/* <CardTopSelling data={data2} /> */}
             </div>
           </div>
         </div>
