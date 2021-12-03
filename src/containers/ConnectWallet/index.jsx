@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { ConnectWalletItemDetails } from '../../utils/allImgs';
+import { SecNewListedArt9 } from '../../utils/allImgs';
 import data from '../../data/data-containers/data-ConnectWalle.js';
 import { getMainWidth } from '../../utils';
 
@@ -30,7 +30,7 @@ const ConnectWalletContainer = () => {
         </div>
 
         <div className="container-fluid">
-          <RowCard img={ConnectWalletItemDetails} data={data} />
+          <RowCard img={SecNewListedArt9} data={data} />
         </div>
       </main>
     </>
