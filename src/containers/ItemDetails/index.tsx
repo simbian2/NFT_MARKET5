@@ -16,8 +16,11 @@ import CardImg from './CardImg';
 import SectionCardUp from './SectionCardUp';
 import SectionCardDown from './SectionCardDown';
 import './ItemDetails.css';
+import { useParams } from 'react-router';
 
 const ItemDetailsContainer = () => {
+  const { id }: { id?: string } = useParams();
+
   useEffect(() => {
     // document.title = 'ItemDetails'
     handleTitle('ItemDetails');
@@ -40,7 +43,13 @@ const ItemDetailsContainer = () => {
 
         <div className="container-fluid">
           <div className="row">
-            <CardImg img={ItemDetailsitemDetails} />
+            <CardImg
+              img={
+                id
+                  ? require(`../../assets/img/art/${id}.png`).default
+                  : ItemDetailsitemDetails
+              }
+            />
             <div className="col-lg-7">
               <SectionCardUp
                 img1={ItemDetailsTeam2}
