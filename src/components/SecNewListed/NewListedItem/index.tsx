@@ -46,6 +46,7 @@ function NewListedItem({
               src={img1}
               alt="img-blur-shadow"
               className="img-fluid shadow border-radius-xl"
+              style={{ minWidth: '100%' }}
             />
           </NavLink>
         </div>
