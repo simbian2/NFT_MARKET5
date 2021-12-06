@@ -4,7 +4,7 @@ import ITag from '../../../../components/ITag';
 
 function SecNavItem({ hideShowSidebar }) {
   const { activateBrowserWallet, deactivate, account } = useEthers();
-  const etherBalance = useEtherBalance(account);
+  const NpandoerBalance = useEtherBalance(account);
 
   return (
     <>

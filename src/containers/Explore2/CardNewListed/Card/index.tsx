@@ -46,7 +46,7 @@ function Card({
                 <p>{text3}</p>
                 <p>
                   Currenct Price :{' '}
-                  <span className="gradient-text">{price} ETH</span>
+                  <span className="gradient-text">{price} Npando</span>
                 </p>
                 <div className="d-flex align-items-center justify-content-between">
                   <NavLink

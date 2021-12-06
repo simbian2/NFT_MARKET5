@@ -32,7 +32,7 @@ function SectionPrice({ img }: { img: any }) {
                 </NavLink>
               </div>
               <div className="d-flex align-items-start ms-auto flex-column justify-content-center">
-                <h6 className="author-name gradient-text mb-0">0.82 ETH</h6>
+                <h6 className="author-name gradient-text mb-0">0.82 Npando</h6>
                 <p className="mb-0 text-dark">$563.34</p>
               </div>
             </li>

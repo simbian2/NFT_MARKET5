@@ -100,7 +100,28 @@ import SecNewListedArt5 from '../../assets/img/art/5.png';
 import SecNewListedArt6 from '../../assets/img/art/6.png';
 import SecNewListedArt7 from '../../assets/img/art/7.png';
 import SecNewListedArt8 from '../../assets/img/art/8.png';
-import SecNewListedArt9 from '../../assets/img/art/3.png';
+import SecNewListedArt9 from '../../assets/img/art/9.png';
+import SecNewListedArt10 from '../../assets/img/art/10.png';
+import SecNewListedArt11 from '../../assets/img/art/11.png';
+import SecNewListedArt12 from '../../assets/img/art/12.png';
+import SecNewListedArt13 from '../../assets/img/art/13.png';
+import SecNewListedArt14 from '../../assets/img/art/14.png';
+import SecNewListedArt15 from '../../assets/img/art/15.png';
+import SecNewListedArt16 from '../../assets/img/art/16.png';
+import SecNewListedArt17 from '../../assets/img/art/17.png';
+import SecNewListedArt18 from '../../assets/img/art/18.png';
+import SecNewListedArt19 from '../../assets/img/art/19.png';
+import SecNewListedArt20 from '../../assets/img/art/20.png';
+import SecNewListedArt21 from '../../assets/img/art/21.png';
+import SecNewListedArt22 from '../../assets/img/art/22.png';
+import SecNewListedArt23 from '../../assets/img/art/23.png';
+import SecNewListedArt24 from '../../assets/img/art/24.png';
+import SecNewListedArt25 from '../../assets/img/art/25.png';
+import SecNewListedArt26 from '../../assets/img/art/26.png';
+import SecNewListedArt27 from '../../assets/img/art/27.png';
+import SecNewListedArt28 from '../../assets/img/art/28.png';
+import SecNewListedArt29 from '../../assets/img/art/29.png';
+import SecNewListedArt30 from '../../assets/img/art/30.png';
 
 import SecNewListedTeam2 from '../../assets/img/team-2.jpg';
 import SecNewListedTeam3 from '../../assets/img/team-3.jpg';
@@ -195,6 +216,27 @@ export {
   SecNewListedArt7,
   SecNewListedArt8,
   SecNewListedArt9,
+  SecNewListedArt10,
+  SecNewListedArt11,
+  SecNewListedArt12,
+  SecNewListedArt13,
+  SecNewListedArt14,
+  SecNewListedArt15,
+  SecNewListedArt16,
+  SecNewListedArt17,
+  SecNewListedArt18,
+  SecNewListedArt19,
+  SecNewListedArt20,
+  SecNewListedArt21,
+  SecNewListedArt22,
+  SecNewListedArt23,
+  SecNewListedArt24,
+  SecNewListedArt25,
+  SecNewListedArt26,
+  SecNewListedArt27,
+  SecNewListedArt28,
+  SecNewListedArt29,
+  SecNewListedArt30,
   SecNewListedTeam2,
   SecNewListedTeam3,
   SecNewListedAuthors1,

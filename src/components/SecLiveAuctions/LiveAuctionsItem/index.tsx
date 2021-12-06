@@ -73,7 +73,8 @@ function LiveAuctionsItem({
             <h5>{text2}</h5>
           </NavLink>
           <p className="mb-4 text-sm">
-            Currenct Price : <span className="gradient-text">{price} ETH</span>
+            Currenct Price :{' '}
+            <span className="gradient-text">{price} Npando</span>
           </p>
           <div className="d-flex align-items-center justify-content-between">
             <NavLink to={path4} className="btn btn-outline-primary btn-sm mb-0">
