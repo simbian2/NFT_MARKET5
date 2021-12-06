@@ -21,6 +21,8 @@ const config: Config = {
   readOnlyUrls: {
     [ChainId.Mainnet]:
       'https://mainnet.infura.io/v3/62687d1a985d4508b2b7a24827551934',
+    [ChainId.Rinkeby]:
+      'https://rinkeby.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161',
     [ChainId.Localhost]: 'http://localhost:7545',
   },
 };
