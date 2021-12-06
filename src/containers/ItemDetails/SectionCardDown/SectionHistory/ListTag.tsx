@@ -1,4 +1,12 @@
-const ListTag = ({ img, mint, price }: { img: any; mint: any; price: any }) => {
+const ListTag = ({
+  img,
+  mint,
+  price,
+}: {
+  img?: any;
+  mint: any;
+  price: any;
+}) => {
   return (
     <li className="mb-2">
       <div className="dropdown-item border-radius-md">

@@ -5,7 +5,7 @@ function ListTag({
   subPrice,
   price,
 }: {
-  img: any;
+  img?: any;
   name: any;
   mint: any;
   subPrice: any;

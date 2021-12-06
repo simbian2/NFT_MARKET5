@@ -1,7 +1,11 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useParams } from 'react-router-dom';
+import data from '../../../../data/data-components/data-SecNewListed.js';
 import './SectionPrice.css';
 
 function SectionPrice({ img }: { img: any }) {
+  const { id }: { id?: string } = useParams();
+  const item = data[parseInt(id!) - 1];
+
   return (
     <div className="col-lg-6 mt-lg-0">
       <div className="card card-background shadow-none card-background-mask-primary">
@@ -14,7 +18,7 @@ function SectionPrice({ img }: { img: any }) {
             ></i>
           </div>
           <h5 className="text-white up mb-10p">Highest Bid</h5>
-          <p>From colors, cards, typography to complex, you will find the.</p>
+          <p>{item.highestBid.placeBidDesc}</p>
           <ul className="list-group mt-15p">
             <li className="list-group-item border-0 d-flex align-items-center px-2">
               {/* <NavLink to="/" className="avatar v2 mr-10">
@@ -22,18 +26,20 @@ function SectionPrice({ img }: { img: any }) {
                   </NavLink> */}
               <div className="d-flex align-items-start flex-column justify-content-center">
                 <NavLink to="/" className="text-decoration-none">
-                  <h6 className="author-name">Thomp</h6>
+                  <h6 className="author-name">{item.highestBid.bidderName}</h6>
                 </NavLink>
                 <NavLink
                   className="btn btn-link autho-link text-decoration-none"
                   to="/"
                 >
-                  @Mthomp
+                  {item.highestBid.bidderId}
                 </NavLink>
               </div>
               <div className="d-flex align-items-start ms-auto flex-column justify-content-center">
-                <h6 className="author-name gradient-text mb-0">0.82 Npando</h6>
-                <p className="mb-0 text-dark">$563.34</p>
+                <h6 className="author-name gradient-text mb-0">
+                  {item.highestBid.bidQty} Npando
+                </h6>
+                <p className="mb-0 text-dark">${item.highestBid.bidPrice}</p>
               </div>
             </li>
           </ul>

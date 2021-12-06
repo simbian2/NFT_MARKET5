@@ -64,6 +64,37 @@ const data = [
     itemArtist: 'David Young',
     itemSize: '300 x 300',
     price: 20,
+    highestBid: {
+      bidderName: 'John Wright',
+      bidderId: '@JW_ny',
+      bidQty: 21,
+      bidPrice: 23,
+      placeBidDesc: 'The highest bid at the end of the auction will win',
+    },
+    history: [
+      { qty: 15, timeAgo: '10 minutes ago' },
+      { qty: 10, timeAgo: '23 minutes ago' },
+    ],
+    latestBids: [
+      {
+        bidderName: 'John Write',
+        timeAgo: '5 minutes ago',
+        subPrice: 32,
+        price: 342,
+      },
+      {
+        bidderName: 'Smith Doe',
+        timeAgo: '7 minutes ago',
+        subPrice: 45,
+        price: 622,
+      },
+      {
+        bidderName: 'Daniel Lee',
+        timeAgo: '18 minutes ago',
+        subPrice: 82,
+        price: 947,
+      },
+    ],
   },
 
   {
@@ -90,6 +121,37 @@ const data = [
     itemArtist: 'Alicia Keys',
     itemSize: '300 x 300',
     price: 15,
+    highestBid: {
+      bidderName: 'Andrew Kim',
+      bidderId: '@Andrew.kim',
+      bidQty: 18,
+      bidPrice: 20,
+      placeBidDesc: 'The highest bid at the end of the auction will win',
+    },
+    history: [
+      { qty: 15, timeAgo: '10 minutes ago' },
+      { qty: 10, timeAgo: '23 minutes ago' },
+    ],
+    latestBids: [
+      {
+        bidderName: 'John Write',
+        timeAgo: '5 minutes ago',
+        subPrice: 32,
+        price: 342,
+      },
+      {
+        bidderName: 'Smith Doe',
+        timeAgo: '7 minutes ago',
+        subPrice: 45,
+        price: 622,
+      },
+      {
+        bidderName: 'Daniel Lee',
+        timeAgo: '18 minutes ago',
+        subPrice: 82,
+        price: 947,
+      },
+    ],
   },
 
   {
@@ -116,6 +178,37 @@ const data = [
     itemArtist: 'Andrew Kim',
     itemSize: '2500 x 2500',
     price: 30,
+    highestBid: {
+      bidderName: 'Jennifer Winston',
+      bidderId: '@jwtn',
+      bidQty: 32,
+      bidPrice: 24,
+      placeBidDesc: 'The highest bid at the end of the auction will win',
+    },
+    history: [
+      { qty: 15, timeAgo: '10 minutes ago' },
+      { qty: 10, timeAgo: '23 minutes ago' },
+    ],
+    latestBids: [
+      {
+        bidderName: 'John Write',
+        timeAgo: '5 minutes ago',
+        subPrice: 0.32,
+        price: 342,
+      },
+      {
+        bidderName: 'Smith Doe',
+        timeAgo: '7 minutes ago',
+        subPrice: 45,
+        price: 622,
+      },
+      {
+        bidderName: 'Daniel Lee',
+        timeAgo: '18 minutes ago',
+        subPrice: 82,
+        price: 947,
+      },
+    ],
   },
 
   {
@@ -142,6 +235,37 @@ const data = [
     itemArtist: 'Jennifer Winston',
     itemSize: '2500 x 2500',
     price: 15,
+    highestBid: {
+      bidderName: 'Jethro Barrow',
+      bidderId: '@barrowsj',
+      bidQty: 16,
+      bidPrice: 30,
+      placeBidDesc: 'The highest bid at the end of the auction will win',
+    },
+    history: [
+      { qty: 15, timeAgo: '10 minutes ago' },
+      { qty: 10, timeAgo: '23 minutes ago' },
+    ],
+    latestBids: [
+      {
+        bidderName: 'John Write',
+        timeAgo: '5 minutes ago',
+        subPrice: 0.32,
+        price: 342,
+      },
+      {
+        bidderName: 'Smith Doe',
+        timeAgo: '7 minutes ago',
+        subPrice: 45,
+        price: 622,
+      },
+      {
+        bidderName: 'Daniel Lee',
+        timeAgo: '18 minutes ago',
+        subPrice: 82,
+        price: 947,
+      },
+    ],
   },
   {
     path1: '/',
@@ -167,6 +291,37 @@ const data = [
     itemArtist: 'Jethro Barrow',
     itemSize: '2500 x 2500',
     price: 17,
+    highestBid: {
+      bidderName: 'Charles Ray',
+      bidderId: '@king_ray',
+      bidQty: 19,
+      bidPrice: 40,
+      placeBidDesc: 'The highest bid at the end of the auction will win',
+    },
+    history: [
+      { qty: 15, timeAgo: '10 minutes ago' },
+      { qty: 10, timeAgo: '23 minutes ago' },
+    ],
+    latestBids: [
+      {
+        bidderName: 'John Write',
+        timeAgo: '5 minutes ago',
+        subPrice: 0.32,
+        price: 342,
+      },
+      {
+        bidderName: 'Smith Doe',
+        timeAgo: '7 minutes ago',
+        subPrice: 45,
+        price: 622,
+      },
+      {
+        bidderName: 'Daniel Lee',
+        timeAgo: '18 minutes ago',
+        subPrice: 82,
+        price: 947,
+      },
+    ],
   },
 
   {
@@ -193,6 +348,37 @@ const data = [
     itemArtist: 'Charles Ray',
     itemSize: '2500 x 2500',
     price: 35,
+    highestBid: {
+      bidderName: 'Cecil Haley',
+      bidderId: '@ce_haley',
+      bidQty: 37,
+      bidPrice: 45,
+      placeBidDesc: 'The highest bid at the end of the auction will win',
+    },
+    history: [
+      { qty: 15, timeAgo: '10 minutes ago' },
+      { qty: 10, timeAgo: '23 minutes ago' },
+    ],
+    latestBids: [
+      {
+        bidderName: 'John Write',
+        timeAgo: '5 minutes ago',
+        subPrice: 0.32,
+        price: 342,
+      },
+      {
+        bidderName: 'Smith Doe',
+        timeAgo: '7 minutes ago',
+        subPrice: 45,
+        price: 622,
+      },
+      {
+        bidderName: 'Daniel Lee',
+        timeAgo: '18 minutes ago',
+        subPrice: 82,
+        price: 947,
+      },
+    ],
   },
 
   {
@@ -219,6 +405,37 @@ const data = [
     itemArtist: 'Cecil Haley',
     itemSize: '2500 x 2500',
     price: 40,
+    highestBid: {
+      bidderName: 'Elvia Hansen',
+      bidderId: '@elv_paint',
+      bidQty: 44,
+      bidPrice: 55,
+      placeBidDesc: 'The highest bid at the end of the auction will win',
+    },
+    history: [
+      { qty: 15, timeAgo: '10 minutes ago' },
+      { qty: 10, timeAgo: '23 minutes ago' },
+    ],
+    latestBids: [
+      {
+        bidderName: 'John Write',
+        timeAgo: '5 minutes ago',
+        subPrice: 0.32,
+        price: 342,
+      },
+      {
+        bidderName: 'Smith Doe',
+        timeAgo: '7 minutes ago',
+        subPrice: 45,
+        price: 622,
+      },
+      {
+        bidderName: 'Daniel Lee',
+        timeAgo: '18 minutes ago',
+        subPrice: 82,
+        price: 947,
+      },
+    ],
   },
 
   {
@@ -245,6 +462,37 @@ const data = [
     itemArtist: 'Elvia Hansen',
     itemSize: '2500 x 2500',
     price: 50,
+    highestBid: {
+      bidderName: 'Kelly Escobar',
+      bidderId: '@fwo_kelly',
+      bidQty: 52,
+      bidPrice: 66,
+      placeBidDesc: 'The highest bid at the end of the auction will win',
+    },
+    history: [
+      { qty: 15, timeAgo: '10 minutes ago' },
+      { qty: 10, timeAgo: '23 minutes ago' },
+    ],
+    latestBids: [
+      {
+        bidderName: 'John Write',
+        timeAgo: '5 minutes ago',
+        subPrice: 0.32,
+        price: 342,
+      },
+      {
+        bidderName: 'Smith Doe',
+        timeAgo: '7 minutes ago',
+        subPrice: 45,
+        price: 622,
+      },
+      {
+        bidderName: 'Daniel Lee',
+        timeAgo: '18 minutes ago',
+        subPrice: 82,
+        price: 947,
+      },
+    ],
   },
 
   {
@@ -271,6 +519,37 @@ const data = [
     itemArtist: 'Kelly Escobar',
     itemSize: '2500 x 2500',
     price: 25,
+    highestBid: {
+      bidderName: 'Dorothea Owens',
+      bidderId: '@d_o_bird',
+      bidQty: 26,
+      bidPrice: 35,
+      placeBidDesc: 'The highest bid at the end of the auction will win',
+    },
+    history: [
+      { qty: 15, timeAgo: '10 minutes ago' },
+      { qty: 10, timeAgo: '23 minutes ago' },
+    ],
+    latestBids: [
+      {
+        bidderName: 'John Write',
+        timeAgo: '5 minutes ago',
+        subPrice: 0.32,
+        price: 342,
+      },
+      {
+        bidderName: 'Smith Doe',
+        timeAgo: '7 minutes ago',
+        subPrice: 45,
+        price: 622,
+      },
+      {
+        bidderName: 'Daniel Lee',
+        timeAgo: '18 minutes ago',
+        subPrice: 82,
+        price: 947,
+      },
+    ],
   },
 
   {
@@ -297,6 +576,37 @@ const data = [
     itemArtist: 'Dorothea Owens',
     itemSize: '2500 x 2500',
     price: 35,
+    highestBid: {
+      bidderName: 'Bob Michaels',
+      bidderId: '@bobby',
+      bidQty: 36,
+      bidPrice: 23,
+      placeBidDesc: 'The highest bid at the end of the auction will win',
+    },
+    history: [
+      { qty: 15, timeAgo: '10 minutes ago' },
+      { qty: 10, timeAgo: '23 minutes ago' },
+    ],
+    latestBids: [
+      {
+        bidderName: 'John Write',
+        timeAgo: '5 minutes ago',
+        subPrice: 0.32,
+        price: 342,
+      },
+      {
+        bidderName: 'Smith Doe',
+        timeAgo: '7 minutes ago',
+        subPrice: 45,
+        price: 622,
+      },
+      {
+        bidderName: 'Daniel Lee',
+        timeAgo: '18 minutes ago',
+        subPrice: 82,
+        price: 947,
+      },
+    ],
   },
 
   {
@@ -323,6 +633,37 @@ const data = [
     itemArtist: 'Bob Michaels',
     itemSize: '2500 x 2500',
     price: 60,
+    highestBid: {
+      bidderName: 'John Muller',
+      bidderId: '@john',
+      bidQty: 62,
+      bidPrice: 78,
+      placeBidDesc: 'The highest bid at the end of the auction will win',
+    },
+    history: [
+      { qty: 15, timeAgo: '10 minutes ago' },
+      { qty: 10, timeAgo: '23 minutes ago' },
+    ],
+    latestBids: [
+      {
+        bidderName: 'John Write',
+        timeAgo: '5 minutes ago',
+        subPrice: 0.32,
+        price: 342,
+      },
+      {
+        bidderName: 'Smith Doe',
+        timeAgo: '7 minutes ago',
+        subPrice: 45,
+        price: 622,
+      },
+      {
+        bidderName: 'Daniel Lee',
+        timeAgo: '18 minutes ago',
+        subPrice: 82,
+        price: 947,
+      },
+    ],
   },
 
   {
@@ -349,6 +690,37 @@ const data = [
     itemArtist: 'John Muller',
     itemSize: '2500 x 2500',
     price: 35,
+    highestBid: {
+      bidderName: 'Terrance Kemp',
+      bidderId: '@terr',
+      bidQty: 37,
+      bidPrice: 40,
+      placeBidDesc: 'The highest bid at the end of the auction will win',
+    },
+    history: [
+      { qty: 15, timeAgo: '10 minutes ago' },
+      { qty: 10, timeAgo: '23 minutes ago' },
+    ],
+    latestBids: [
+      {
+        bidderName: 'John Write',
+        timeAgo: '5 minutes ago',
+        subPrice: 0.32,
+        price: 342,
+      },
+      {
+        bidderName: 'Smith Doe',
+        timeAgo: '7 minutes ago',
+        subPrice: 45,
+        price: 622,
+      },
+      {
+        bidderName: 'Daniel Lee',
+        timeAgo: '18 minutes ago',
+        subPrice: 82,
+        price: 947,
+      },
+    ],
   },
 
   {
@@ -375,6 +747,37 @@ const data = [
     itemArtist: 'Terrance Kemp',
     itemSize: '2500 x 2500',
     price: 40,
+    highestBid: {
+      bidderName: 'Gabriel Santos',
+      bidderId: '@g_santos_br',
+      bidQty: 41,
+      bidPrice: 56,
+      placeBidDesc: 'The highest bid at the end of the auction will win',
+    },
+    history: [
+      { qty: 15, timeAgo: '10 minutes ago' },
+      { qty: 10, timeAgo: '23 minutes ago' },
+    ],
+    latestBids: [
+      {
+        bidderName: 'John Write',
+        timeAgo: '5 minutes ago',
+        subPrice: 0.32,
+        price: 342,
+      },
+      {
+        bidderName: 'Smith Doe',
+        timeAgo: '7 minutes ago',
+        subPrice: 45,
+        price: 622,
+      },
+      {
+        bidderName: 'Daniel Lee',
+        timeAgo: '18 minutes ago',
+        subPrice: 82,
+        price: 947,
+      },
+    ],
   },
 
   {
@@ -401,6 +804,37 @@ const data = [
     itemArtist: 'Gabriel Santos',
     itemSize: '2500 x 2500',
     price: 150,
+    highestBid: {
+      bidderName: 'Andrew Kim',
+      bidderId: '@Andrew.kim',
+      bidQty: 152,
+      bidPrice: 176,
+      placeBidDesc: 'The highest bid at the end of the auction will win',
+    },
+    history: [
+      { qty: 15, timeAgo: '10 minutes ago' },
+      { qty: 10, timeAgo: '23 minutes ago' },
+    ],
+    latestBids: [
+      {
+        bidderName: 'John Write',
+        timeAgo: '5 minutes ago',
+        subPrice: 0.32,
+        price: 342,
+      },
+      {
+        bidderName: 'Smith Doe',
+        timeAgo: '7 minutes ago',
+        subPrice: 45,
+        price: 622,
+      },
+      {
+        bidderName: 'Daniel Lee',
+        timeAgo: '18 minutes ago',
+        subPrice: 82,
+        price: 947,
+      },
+    ],
   },
 
   {
@@ -427,6 +861,37 @@ const data = [
     itemArtist: 'Andrew Kim',
     itemSize: '2500 x 2500',
     price: 120,
+    highestBid: {
+      bidderName: 'Lisa Miller',
+      bidderId: '@bp_lisa',
+      bidQty: 122,
+      bidPrice: 138,
+      placeBidDesc: 'The highest bid at the end of the auction will win',
+    },
+    history: [
+      { qty: 15, timeAgo: '10 minutes ago' },
+      { qty: 10, timeAgo: '23 minutes ago' },
+    ],
+    latestBids: [
+      {
+        bidderName: 'John Write',
+        timeAgo: '5 minutes ago',
+        subPrice: 0.32,
+        price: 342,
+      },
+      {
+        bidderName: 'Smith Doe',
+        timeAgo: '7 minutes ago',
+        subPrice: 45,
+        price: 622,
+      },
+      {
+        bidderName: 'Daniel Lee',
+        timeAgo: '18 minutes ago',
+        subPrice: 82,
+        price: 947,
+      },
+    ],
   },
 
   {
@@ -453,6 +918,37 @@ const data = [
     itemArtist: 'Lisa Miller',
     itemSize: '2500 x 2500',
     price: 140,
+    highestBid: {
+      bidderName: 'Luoie Glover',
+      bidderId: '@glamours',
+      bidQty: 146,
+      bidPrice: 157,
+      placeBidDesc: 'The highest bid at the end of the auction will win',
+    },
+    history: [
+      { qty: 15, timeAgo: '10 minutes ago' },
+      { qty: 10, timeAgo: '23 minutes ago' },
+    ],
+    latestBids: [
+      {
+        bidderName: 'John Write',
+        timeAgo: '5 minutes ago',
+        subPrice: 0.32,
+        price: 342,
+      },
+      {
+        bidderName: 'Smith Doe',
+        timeAgo: '7 minutes ago',
+        subPrice: 45,
+        price: 622,
+      },
+      {
+        bidderName: 'Daniel Lee',
+        timeAgo: '18 minutes ago',
+        subPrice: 82,
+        price: 947,
+      },
+    ],
   },
 
   {
@@ -479,6 +975,37 @@ const data = [
     itemArtist: 'Luoie Glover',
     itemSize: '2500 x 2500',
     price: 40,
+    highestBid: {
+      bidderName: 'Oliver Twist',
+      bidderId: '@twisters',
+      bidQty: 41,
+      bidPrice: 56,
+      placeBidDesc: 'The highest bid at the end of the auction will win',
+    },
+    history: [
+      { qty: 15, timeAgo: '10 minutes ago' },
+      { qty: 10, timeAgo: '23 minutes ago' },
+    ],
+    latestBids: [
+      {
+        bidderName: 'John Write',
+        timeAgo: '5 minutes ago',
+        subPrice: 0.32,
+        price: 342,
+      },
+      {
+        bidderName: 'Smith Doe',
+        timeAgo: '7 minutes ago',
+        subPrice: 45,
+        price: 622,
+      },
+      {
+        bidderName: 'Daniel Lee',
+        timeAgo: '18 minutes ago',
+        subPrice: 82,
+        price: 947,
+      },
+    ],
   },
 
   {
@@ -505,6 +1032,37 @@ const data = [
     itemArtist: 'Oliver Twist',
     itemSize: '2500 x 2500',
     price: 50,
+    highestBid: {
+      bidderName: 'Marcos Hong',
+      bidderId: '@pray_for',
+      bidQty: 52,
+      bidPrice: 67,
+      placeBidDesc: 'The highest bid at the end of the auction will win',
+    },
+    history: [
+      { qty: 15, timeAgo: '10 minutes ago' },
+      { qty: 10, timeAgo: '23 minutes ago' },
+    ],
+    latestBids: [
+      {
+        bidderName: 'John Write',
+        timeAgo: '5 minutes ago',
+        subPrice: 0.32,
+        price: 342,
+      },
+      {
+        bidderName: 'Smith Doe',
+        timeAgo: '7 minutes ago',
+        subPrice: 45,
+        price: 622,
+      },
+      {
+        bidderName: 'Daniel Lee',
+        timeAgo: '18 minutes ago',
+        subPrice: 82,
+        price: 947,
+      },
+    ],
   },
 
   {
@@ -531,6 +1089,37 @@ const data = [
     itemArtist: 'Marcos Hong',
     itemSize: '2500 x 2500',
     price: 80,
+    highestBid: {
+      bidderName: 'Kelly Clarkson',
+      bidderId: '@sing_clark',
+      bidQty: 82,
+      bidPrice: 98,
+      placeBidDesc: 'The highest bid at the end of the auction will win',
+    },
+    history: [
+      { qty: 15, timeAgo: '10 minutes ago' },
+      { qty: 10, timeAgo: '23 minutes ago' },
+    ],
+    latestBids: [
+      {
+        bidderName: 'John Write',
+        timeAgo: '5 minutes ago',
+        subPrice: 0.32,
+        price: 342,
+      },
+      {
+        bidderName: 'Smith Doe',
+        timeAgo: '7 minutes ago',
+        subPrice: 45,
+        price: 622,
+      },
+      {
+        bidderName: 'Daniel Lee',
+        timeAgo: '18 minutes ago',
+        subPrice: 82,
+        price: 947,
+      },
+    ],
   },
 
   {
@@ -557,6 +1146,37 @@ const data = [
     itemArtist: 'Kelly Clarkson',
     itemSize: '2500 x 2500',
     price: 40,
+    highestBid: {
+      bidderName: 'John Yang',
+      bidderId: '@crazyrich',
+      bidQty: 42,
+      bidPrice: 55,
+      placeBidDesc: 'The highest bid at the end of the auction will win',
+    },
+    history: [
+      { qty: 15, timeAgo: '10 minutes ago' },
+      { qty: 10, timeAgo: '23 minutes ago' },
+    ],
+    latestBids: [
+      {
+        bidderName: 'John Write',
+        timeAgo: '5 minutes ago',
+        subPrice: 0.32,
+        price: 342,
+      },
+      {
+        bidderName: 'Smith Doe',
+        timeAgo: '7 minutes ago',
+        subPrice: 45,
+        price: 622,
+      },
+      {
+        bidderName: 'Daniel Lee',
+        timeAgo: '18 minutes ago',
+        subPrice: 82,
+        price: 947,
+      },
+    ],
   },
 
   {
@@ -583,6 +1203,37 @@ const data = [
     itemArtist: 'John Yang',
     itemSize: '2500 x 2500',
     price: 35,
+    highestBid: {
+      bidderName: 'Donald Brown',
+      bidderId: '@d_tower',
+      bidQty: 36,
+      bidPrice: 45,
+      placeBidDesc: 'The highest bid at the end of the auction will win',
+    },
+    history: [
+      { qty: 15, timeAgo: '10 minutes ago' },
+      { qty: 10, timeAgo: '23 minutes ago' },
+    ],
+    latestBids: [
+      {
+        bidderName: 'John Write',
+        timeAgo: '5 minutes ago',
+        subPrice: 0.32,
+        price: 342,
+      },
+      {
+        bidderName: 'Smith Doe',
+        timeAgo: '7 minutes ago',
+        subPrice: 45,
+        price: 622,
+      },
+      {
+        bidderName: 'Daniel Lee',
+        timeAgo: '18 minutes ago',
+        subPrice: 82,
+        price: 947,
+      },
+    ],
   },
 
   {
@@ -609,6 +1260,37 @@ const data = [
     itemArtist: 'Donald Brown',
     itemSize: '2500 x 2500',
     price: 60,
+    highestBid: {
+      bidderName: 'Daniel Steven',
+      bidderId: '@dani',
+      bidQty: 61,
+      bidPrice: 78,
+      placeBidDesc: 'The highest bid at the end of the auction will win',
+    },
+    history: [
+      { qty: 15, timeAgo: '10 minutes ago' },
+      { qty: 10, timeAgo: '23 minutes ago' },
+    ],
+    latestBids: [
+      {
+        bidderName: 'John Write',
+        timeAgo: '5 minutes ago',
+        subPrice: 0.32,
+        price: 342,
+      },
+      {
+        bidderName: 'Smith Doe',
+        timeAgo: '7 minutes ago',
+        subPrice: 45,
+        price: 622,
+      },
+      {
+        bidderName: 'Daniel Lee',
+        timeAgo: '18 minutes ago',
+        subPrice: 82,
+        price: 947,
+      },
+    ],
   },
 
   {
@@ -635,6 +1317,37 @@ const data = [
     itemArtist: 'Daniel Steven',
     itemSize: '2500 x 2500',
     price: 40,
+    highestBid: {
+      bidderName: 'John Manchester',
+      bidderId: '@johnny_m',
+      bidQty: 41,
+      bidPrice: 55,
+      placeBidDesc: 'The highest bid at the end of the auction will win',
+    },
+    history: [
+      { qty: 15, timeAgo: '10 minutes ago' },
+      { qty: 10, timeAgo: '23 minutes ago' },
+    ],
+    latestBids: [
+      {
+        bidderName: 'John Write',
+        timeAgo: '5 minutes ago',
+        subPrice: 0.32,
+        price: 342,
+      },
+      {
+        bidderName: 'Smith Doe',
+        timeAgo: '7 minutes ago',
+        subPrice: 45,
+        price: 622,
+      },
+      {
+        bidderName: 'Daniel Lee',
+        timeAgo: '18 minutes ago',
+        subPrice: 82,
+        price: 947,
+      },
+    ],
   },
 
   {
@@ -661,6 +1374,37 @@ const data = [
     itemArtist: 'John Manchester',
     itemSize: '2500 x 2500',
     price: 30,
+    highestBid: {
+      bidderName: 'Aiden Lee',
+      bidderId: '@plan_ai',
+      bidQty: 32,
+      bidPrice: 38,
+      placeBidDesc: 'The highest bid at the end of the auction will win',
+    },
+    history: [
+      { qty: 15, timeAgo: '10 minutes ago' },
+      { qty: 10, timeAgo: '23 minutes ago' },
+    ],
+    latestBids: [
+      {
+        bidderName: 'John Write',
+        timeAgo: '5 minutes ago',
+        subPrice: 0.32,
+        price: 342,
+      },
+      {
+        bidderName: 'Smith Doe',
+        timeAgo: '7 minutes ago',
+        subPrice: 45,
+        price: 622,
+      },
+      {
+        bidderName: 'Daniel Lee',
+        timeAgo: '18 minutes ago',
+        subPrice: 82,
+        price: 947,
+      },
+    ],
   },
 
   {
@@ -687,6 +1431,37 @@ const data = [
     itemArtist: 'Aiden Lee',
     itemSize: '2500 x 2500',
     price: 150,
+    highestBid: {
+      bidderName: 'Andy Jacks',
+      bidderId: '@hacking_an',
+      bidQty: 152,
+      bidPrice: 180,
+      placeBidDesc: 'The highest bid at the end of the auction will win',
+    },
+    history: [
+      { qty: 15, timeAgo: '10 minutes ago' },
+      { qty: 10, timeAgo: '23 minutes ago' },
+    ],
+    latestBids: [
+      {
+        bidderName: 'John Write',
+        timeAgo: '5 minutes ago',
+        subPrice: 0.32,
+        price: 342,
+      },
+      {
+        bidderName: 'Smith Doe',
+        timeAgo: '7 minutes ago',
+        subPrice: 45,
+        price: 622,
+      },
+      {
+        bidderName: 'Daniel Lee',
+        timeAgo: '18 minutes ago',
+        subPrice: 82,
+        price: 947,
+      },
+    ],
   },
 
   {
@@ -713,6 +1488,37 @@ const data = [
     itemArtist: 'Andy Jacks',
     itemSize: '2500 x 2500',
     price: 150,
+    highestBid: {
+      bidderName: 'Diana Lee',
+      bidderId: '@design_diana',
+      bidQty: 155,
+      bidPrice: 180,
+      placeBidDesc: 'The highest bid at the end of the auction will win',
+    },
+    history: [
+      { qty: 15, timeAgo: '10 minutes ago' },
+      { qty: 10, timeAgo: '23 minutes ago' },
+    ],
+    latestBids: [
+      {
+        bidderName: 'John Write',
+        timeAgo: '5 minutes ago',
+        subPrice: 0.32,
+        price: 342,
+      },
+      {
+        bidderName: 'Smith Doe',
+        timeAgo: '7 minutes ago',
+        subPrice: 45,
+        price: 622,
+      },
+      {
+        bidderName: 'Daniel Lee',
+        timeAgo: '18 minutes ago',
+        subPrice: 82,
+        price: 947,
+      },
+    ],
   },
 
   {
@@ -739,6 +1545,37 @@ const data = [
     itemArtist: 'Diana Lee',
     itemSize: '2500 x 2500',
     price: 80,
+    highestBid: {
+      bidderName: 'Debora Weinhelm',
+      bidderId: '@wanda',
+      bidQty: 82,
+      bidPrice: 98,
+      placeBidDesc: 'The highest bid at the end of the auction will win',
+    },
+    history: [
+      { qty: 15, timeAgo: '10 minutes ago' },
+      { qty: 10, timeAgo: '23 minutes ago' },
+    ],
+    latestBids: [
+      {
+        bidderName: 'John Write',
+        timeAgo: '5 minutes ago',
+        subPrice: 0.32,
+        price: 342,
+      },
+      {
+        bidderName: 'Smith Doe',
+        timeAgo: '7 minutes ago',
+        subPrice: 45,
+        price: 622,
+      },
+      {
+        bidderName: 'Daniel Lee',
+        timeAgo: '18 minutes ago',
+        subPrice: 82,
+        price: 947,
+      },
+    ],
   },
 
   {
@@ -765,6 +1602,37 @@ const data = [
     itemArtist: 'Debora Weinhelm',
     itemSize: '2500 x 2500',
     price: 70,
+    highestBid: {
+      bidderName: 'Clara Kim',
+      bidderId: '@flying_panda',
+      bidQty: 72,
+      bidPrice: 87,
+      placeBidDesc: 'The highest bid at the end of the auction will win',
+    },
+    history: [
+      { qty: 15, timeAgo: '10 minutes ago' },
+      { qty: 10, timeAgo: '23 minutes ago' },
+    ],
+    latestBids: [
+      {
+        bidderName: 'John Write',
+        timeAgo: '5 minutes ago',
+        subPrice: 0.32,
+        price: 342,
+      },
+      {
+        bidderName: 'Smith Doe',
+        timeAgo: '7 minutes ago',
+        subPrice: 45,
+        price: 622,
+      },
+      {
+        bidderName: 'Daniel Lee',
+        timeAgo: '18 minutes ago',
+        subPrice: 82,
+        price: 947,
+      },
+    ],
   },
 
   {
@@ -791,6 +1659,37 @@ const data = [
     itemArtist: 'Clara Kim',
     itemSize: '2500 x 2500',
     price: 80,
+    highestBid: {
+      bidderName: 'Joana Bestow',
+      bidderId: '@walking_now',
+      bidQty: 83,
+      bidPrice: 99,
+      placeBidDesc: 'The highest bid at the end of the auction will win',
+    },
+    history: [
+      { qty: 15, timeAgo: '10 minutes ago' },
+      { qty: 10, timeAgo: '23 minutes ago' },
+    ],
+    latestBids: [
+      {
+        bidderName: 'John Write',
+        timeAgo: '5 minutes ago',
+        subPrice: 0.32,
+        price: 342,
+      },
+      {
+        bidderName: 'Smith Doe',
+        timeAgo: '7 minutes ago',
+        subPrice: 45,
+        price: 622,
+      },
+      {
+        bidderName: 'Daniel Lee',
+        timeAgo: '18 minutes ago',
+        subPrice: 82,
+        price: 947,
+      },
+    ],
   },
 
   {
@@ -817,6 +1716,37 @@ const data = [
     itemArtist: 'Joana Bestow',
     itemSize: '2500 x 2500',
     price: 80,
+    highestBid: {
+      bidderName: 'David Young',
+      bidderId: '@DG_London',
+      bidQty: 81,
+      bidPrice: 99,
+      placeBidDesc: 'The highest bid at the end of the auction will win',
+    },
+    history: [
+      { qty: 15, timeAgo: '10 minutes ago' },
+      { qty: 10, timeAgo: '23 minutes ago' },
+    ],
+    latestBids: [
+      {
+        bidderName: 'John Write',
+        timeAgo: '5 minutes ago',
+        subPrice: 0.32,
+        price: 342,
+      },
+      {
+        bidderName: 'Smith Doe',
+        timeAgo: '7 minutes ago',
+        subPrice: 45,
+        price: 622,
+      },
+      {
+        bidderName: 'Daniel Lee',
+        timeAgo: '18 minutes ago',
+        subPrice: 82,
+        price: 947,
+      },
+    ],
   },
 ];
 
