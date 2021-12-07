@@ -36,7 +36,7 @@ function SecProjects() {
     while (count > 0) {
       const result = await contracts.nftContract.methods.ownerOf(i).call();
 
-      if (result) {
+      if (result === account) {
         count--;
         _ids.push(i);
       }
