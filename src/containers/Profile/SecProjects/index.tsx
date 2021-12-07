@@ -49,7 +49,7 @@ function SecProjects() {
   };
 
   const getTokens = async () => {
-    const datas = await Promise.all(
+    const promises = await Promise.all(
       ids.map(async (id) => {
         const hash = await contracts.nftContract.methods.tokenURI(id).call();
         const response = await fetch(
@@ -71,6 +71,8 @@ function SecProjects() {
         };
       })
     );
+
+    const datas = await Promise.all(promises);
 
     console.log(datas);
   };
