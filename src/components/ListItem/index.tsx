@@ -32,7 +32,7 @@ const ListItem: React.FunctionComponent<IListItemProps> = (props) => {
             <h5>{props.description}</h5>
           </NavLink>
           <p className="mb-4 text-sm">
-            Currenct Price : <span className="gradient-text">price Npando</span>
+            Currenct Price : <span className="gradient-text">0 ETH</span>
           </p>
           <div className="d-flex align-items-center justify-content-between">
             <NavLink to="" className="btn btn-outline-primary btn-sm mb-0">
