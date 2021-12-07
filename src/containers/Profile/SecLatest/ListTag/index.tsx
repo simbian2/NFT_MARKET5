@@ -1,4 +1,16 @@
-function ListTag({ img, name, mint, subPrice, price }) {
+function ListTag({
+  img,
+  name,
+  mint,
+  subPrice,
+  price,
+}: {
+  img: any;
+  name: any;
+  mint: any;
+  subPrice: any;
+  price: any;
+}) {
   return (
     <li className="mb-2">
       <div className="dropdown-item border-radius-md">

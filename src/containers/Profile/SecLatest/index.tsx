@@ -1,8 +1,7 @@
-import ListTag from './ListTag'
+import ListTag from './ListTag';
 
-function SecLatest({ data1 }){
-
-  return(
+function SecLatest({ data1 }: { data1: any }) {
+  return (
     <div className="col-12 col-xl-4 col-lg-6 mt-ls">
       <div className="card h-100">
         <div className="card-header pb-0 p-3">
@@ -10,21 +9,22 @@ function SecLatest({ data1 }){
         </div>
         <div className="card-body p-3">
           <ul className="list-group list-group-none">
-            {data1 && data1.map((item , i) => (
+            {data1 &&
+              data1.map((item: any, i: number) => (
                 <ListTag
-                    key={i}
-                    img={item.img}
-                    name={item.name}
-                    mint={item.mint}
-                    subPrice={item.subPrice}
-                    price={item.price}
+                  key={i}
+                  img={item.img}
+                  name={item.name}
+                  mint={item.mint}
+                  subPrice={item.subPrice}
+                  price={item.price}
                 />
               ))}
           </ul>
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default SecLatest
+export default SecLatest;

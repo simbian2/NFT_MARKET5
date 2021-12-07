@@ -1,10 +1,19 @@
-import { useEtherBalance, useEthers } from '@usedapp/core';
+import { useWeb3React } from '@web3-react/core';
+import React from 'react';
 import { NavLink } from 'react-router-dom';
+import { useSetRecoilState } from 'recoil';
+import walletAccountAtom from '../../../../atoms/walletAccount';
 import ITag from '../../../../components/ITag';
+import { injectedConnector } from '../../../../connector';
 
-function SecNavItem({ hideShowSidebar }) {
-  const { activateBrowserWallet, deactivate, account } = useEthers();
-  const NpandoerBalance = useEtherBalance(account);
+function SecNavItem({ hideShowSidebar }: { hideShowSidebar: any }) {
+  const { chainId, account, activate, deactivate, active } = useWeb3React();
+
+  const setWalletAccount = useSetRecoilState(walletAccountAtom);
+
+  React.useEffect(() => {
+    setWalletAccount(account || '');
+  }, [account]);
 
   return (
     <>
@@ -19,7 +28,7 @@ function SecNavItem({ hideShowSidebar }) {
         ) : (
           <button
             className="btn btn-white bg-light mb-0 w-100"
-            onClick={() => activateBrowserWallet()}
+            onClick={() => activate(injectedConnector)}
           >
             Connect Wallet
           </button>
@@ -35,7 +44,7 @@ function SecNavItem({ hideShowSidebar }) {
       <li className="nav-item d-xl-none px-3 d-flex align-items-center">
         <div className="sidenav-toggler-inner" onClick={hideShowSidebar}>
           {Array(3)
-            .fill()
+            .fill(0)
             .map((item, i) => (
               <ITag ClassName="sidenav-toggler-line" key={i} />
             ))}

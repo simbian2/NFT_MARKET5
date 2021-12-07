@@ -1,37 +1,19 @@
-import React from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from 'react-router-dom';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
-import {
-  ChainId,
-  DAppProvider,
-  useEtherBalance,
-  useEthers,
-  Config,
-} from '@usedapp/core';
-import { formatEther } from '@ethersproject/units';
-
-const config: Config = {
-  readOnlyChainId:
-    process.env.NODE_ENV === 'development'
-      ? ChainId.Localhost
-      : ChainId.Rinkeby,
-  readOnlyUrls: {
-    [ChainId.Mainnet]:
-      'https://mainnet.infura.io/v3/62687d1a985d4508b2b7a24827551934',
-    [ChainId.Rinkeby]:
-      'https://rinkeby.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161',
-    [ChainId.Localhost]: 'http://localhost:7545',
-  },
-};
+import { RecoilRoot } from 'recoil';
+import { Web3ReactProvider } from '@web3-react/core';
+import getLibrary from './library';
 
 ReactDOM.render(
   <BrowserRouter>
-    <DAppProvider config={config}>
-      <App />
-    </DAppProvider>
+    <RecoilRoot>
+      <Web3ReactProvider getLibrary={getLibrary}>
+        <App />
+      </Web3ReactProvider>
+    </RecoilRoot>
   </BrowserRouter>,
   document.getElementById('root')
 );
