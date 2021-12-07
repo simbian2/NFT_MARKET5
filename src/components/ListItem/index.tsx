@@ -2,7 +2,7 @@ import * as React from 'react';
 import { NavLink } from 'react-router-dom';
 
 interface IListItemProps {
-  id: string;
+  id: number;
   title: string;
   description: string;
   img: string;

@@ -3,7 +3,6 @@ import { NavLink } from 'react-router-dom';
 import ITag from '../../../components/ITag';
 import ListItem from '../../../components/ListItem';
 import contracts from '../../../constants/contracts';
-import data from '../../../data/data-components/data-SecNewListed.js';
 import { useWeb3React } from '@web3-react/core';
 
 function SecProjects() {
@@ -13,7 +12,7 @@ function SecProjects() {
   const [balance, setBalance] = React.useState<number>(0);
   const [tokens, setTokens] = React.useState<
     {
-      id: string;
+      id: number;
       title: string;
       description: string;
       img: string;
@@ -49,32 +48,28 @@ function SecProjects() {
   };
 
   const getTokens = async () => {
-    const promises = await Promise.all(
-      ids.map(async (id) => {
-        const hash = await contracts.nftContract.methods.tokenURI(id).call();
-        const response = await fetch(
-          `https://ipfs.infura.io/ipfs/${hash}?clear`
-        );
-        if (!response.ok) {
-          throw new Error('Something went wrong');
-        }
+    const promises = ids.map(async (id) => {
+      const hash = await contracts.nftContract.methods.tokenURI(id).call();
+      const response = await fetch(`https://ipfs.infura.io/ipfs/${hash}?clear`);
+      if (!response.ok) {
+        throw new Error('Something went wrong');
+      }
 
-        const metadata = await response.json();
-        const owner = await contracts.nftContract.methods.ownerOf(id).call();
+      const metadata = await response.json();
+      const owner = await contracts.nftContract.methods.ownerOf(id).call();
 
-        return {
-          id,
-          title: metadata.properties.name.description,
-          description: metadata.properties.description.description,
-          img: `https://ipfs.infura.io/ipfs/${metadata.properties.image.description}`,
-          owner,
-        };
-      })
-    );
+      return {
+        id,
+        title: metadata.properties.name.description,
+        description: metadata.properties.description.description,
+        img: `https://ipfs.infura.io/ipfs/${metadata.properties.image.description}`,
+        owner,
+      };
+    });
 
     const datas = await Promise.all(promises);
 
-    console.log(datas);
+    setTokens(datas);
   };
 
   React.useEffect(() => {
