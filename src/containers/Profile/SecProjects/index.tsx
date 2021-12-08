@@ -9,6 +9,8 @@ import myItemsAtom from '../../../atoms/myItems';
 import myAuctionsAtom from '../../../atoms/myAuctions';
 import MyAuctionItem from '../../../components/MyAuctionItem';
 import { IAuction } from '../../../types';
+import addresses from '../../../constants/addresses';
+import { getTokenInfo } from '../../../utils';
 
 function SecProjects() {
   const { account } = useWeb3React();
@@ -89,29 +91,6 @@ function SecProjects() {
     });
 
     setMyItems(datas);
-  };
-
-  const getTokenInfo = async (id: number) => {
-    const hash = await contracts.nftContract.methods.tokenURI(id).call();
-    const response = await fetch(`https://ipfs.infura.io/ipfs/${hash}?clear`);
-    if (!response.ok) {
-      throw new Error('Something went wrong');
-    }
-
-    const metadata = await response.json();
-    const isApproved = await contracts.nftContract.methods
-      .getApproved(id)
-      .call();
-    const owner = await contracts.nftContract.methods.ownerOf(id).call();
-
-    return {
-      id,
-      title: metadata.properties.name.description,
-      description: metadata.properties.description.description,
-      img: `https://ipfs.infura.io/ipfs/${metadata.properties.image.description}`,
-      isApproved,
-      owner,
-    };
   };
 
   React.useEffect(() => {

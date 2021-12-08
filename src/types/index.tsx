@@ -20,3 +20,10 @@ export interface IAuction {
   tokenId: string;
   tokenInfo?: IItem;
 }
+
+export interface IBid {
+  bidId: string;
+  bidder: string;
+  price: string;
+  timestamp: string;
+}

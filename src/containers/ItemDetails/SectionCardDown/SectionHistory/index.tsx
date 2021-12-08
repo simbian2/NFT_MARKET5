@@ -14,7 +14,7 @@ function SectionHistory() {
           <ul className="dropdown-menu relative dropdown-menu-end show border-0">
             {item &&
               item.history.map((item, i) => (
-                <ListTag mint={item.timeAgo} price={item.qty} />
+                <ListTag key={i} mint={item.timeAgo} price={item.qty} />
               ))}
           </ul>
         </div>

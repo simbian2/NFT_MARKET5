@@ -1,4 +1,4 @@
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import { IAuction } from '../../../types/index';
 import { SecLiveAuctionsIconfire } from '../../../utils/allImgs';
 import TimeAgo from 'react-timeago';
@@ -8,14 +8,17 @@ import BigNumber from 'bignumber.js';
 
 function LiveAuctionsItem(props: IAuction) {
   const setSelectedAuction = useSetRecoilState(selectedAuctionAtom);
+  const history = useHistory();
 
   return (
     <div className="col-xl-3 col-md-6 mb-xl-0">
-      <NavLink
+      <div
         className="card card-blog card-plain"
-        to={`/itemdetails/${props.auctionId}`}
-        style={{ textDecoration: 'none' }}
-        onClick={() => setSelectedAuction(props)}
+        style={{ textDecoration: 'none', cursor: 'pointer' }}
+        onClick={async () => {
+          setSelectedAuction(props);
+          history.push(`/itemdetails/${props.auctionId}`);
+        }}
       >
         <div
           className="position-relative mb-30 img-fluid shadow border-radius-xl"
@@ -74,7 +77,7 @@ function LiveAuctionsItem(props: IAuction) {
             </NavLink>
           </div> */}
         </div>
-      </NavLink>
+      </div>
     </div>
   );
 }

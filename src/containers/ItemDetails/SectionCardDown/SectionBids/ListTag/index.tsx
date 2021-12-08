@@ -1,16 +1,8 @@
-function ListTag({
-  img,
-  name,
-  mint,
-  subPrice,
-  price,
-}: {
-  img?: any;
-  name: any;
-  mint: any;
-  subPrice: any;
-  price: any;
-}) {
+import { IBid } from '../../../../../types';
+import TimeAgo from 'react-timeago';
+import BigNumber from 'bignumber.js';
+
+function ListTag(props: IBid) {
   return (
     <li className="mb-2">
       <div className="dropdown-item border-radius-md">
@@ -20,18 +12,23 @@ function ListTag({
             </div> */}
           <div className="d-flex flex-column justify-content-center">
             <h6 className="text-sm font-weight-normal mb-1">
-              <span className="font-weight-bold">By</span> {name}
+              <span className="font-weight-bold">By</span> {props.bidder}
             </h6>
             <p className="text-xs text-secondary mb-0">
               <i className="fa fa-clock me-1" aria-hidden="true"></i>
-              {mint}
+              <TimeAgo date={new Date(parseInt(props.timestamp))} />
             </p>
           </div>
           <div className="d-flex flex-column justify-content-center ms-auto">
             <h6 className="text-sm font-weight-normal mb-1">
-              <span className="gradient-text">{subPrice} ETH</span>
+              <span className="gradient-text">
+                {new BigNumber(parseInt(props.price))
+                  .div(new BigNumber(10).pow(18))
+                  .toString()}{' '}
+                ETH
+              </span>
             </h6>
-            <p className="text-xs text-secondary mb-0">${price}</p>
+            {/* <p className="text-xs text-secondary mb-0">${price}</p> */}
           </div>
         </div>
       </div>

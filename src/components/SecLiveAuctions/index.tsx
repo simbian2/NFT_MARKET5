@@ -9,6 +9,7 @@ import { getTokenInfo } from '../../utils';
 
 function SecLiveAuctions() {
   const [auctions, setAuctions] = React.useState<IAuction[]>([]);
+
   const getAuctions = async () => {
     const auctions = await contracts.nftMarketContract.methods
       .getOpenAuctions(1, 1, '', 0, 10)
