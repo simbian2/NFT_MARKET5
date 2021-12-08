@@ -11,12 +11,10 @@ import SectionCard from './SectionCard';
 import SectionHeading from '../../components/SectionHeading';
 import SecNewListed from '../../components/SecNewListed';
 import SecLiveAuctions from '../../components/SecLiveAuctions';
-import { useRecoilState } from 'recoil';
-import auctionsAtom from '../../atoms/auctions';
+import { useSetRecoilState } from 'recoil';
 import itemsAtom from '../../atoms/items';
 import contracts from '../../constants/contracts';
 import React from 'react';
-import { IAuction } from '../../types';
 
 const HomeContainer = () => {
   useEffect(() => {
@@ -25,34 +23,7 @@ const HomeContainer = () => {
     getMainWidth();
   }, []);
 
-  const [auctions, setAuctions] = useRecoilState(auctionsAtom);
-  const [items, setItems] = useRecoilState(itemsAtom);
-
-  // const getAuctions = async () => {
-  //   const userAuctions = await contracts.nftMarketContract.methods
-  //     .getUserAuctions(account)
-  //     .call();
-
-  //   console.log('userAuctions', userAuctions);
-
-  //   const promises = userAuctions.map(async (auction: IAuction) => {
-  //     console.log('status', auction.auctionTypes.status);
-  //     if (auction.auctionTypes.status === '1') {
-  //       const tokenInfo = await getTokenInfo(parseInt(auction['tokenId']));
-
-  //       return {
-  //         ...auction,
-  //         tokenInfo,
-  //       };
-  //     } else {
-  //       return null;
-  //     }
-  //   });
-
-  //   const data = await Promise.all(promises);
-
-  //   setAuctions(data.filter((el) => el != null));
-  // };
+  const setItems = useSetRecoilState(itemsAtom);
 
   const getItems = async () => {
     let datas: any = [];
@@ -83,41 +54,18 @@ const HomeContainer = () => {
           },
           ...datas,
         ];
+        setItems(datas);
       } catch (_) {
         break;
       }
     }
 
     console.log('datas', datas);
-    setItems(datas);
-  };
-
-  const getTokenInfo = async (id: number) => {
-    const hash = await contracts.nftContract.methods.tokenURI(id).call();
-    const response = await fetch(`https://ipfs.infura.io/ipfs/${hash}?clear`);
-    if (!response.ok) {
-      throw new Error('Something went wrong');
-    }
-
-    const metadata = await response.json();
-    const isApproved = await contracts.nftContract.methods
-      .getApproved(id)
-      .call();
-    const owner = await contracts.nftContract.methods.ownerOf(id).call();
-
-    return {
-      id,
-      title: metadata.properties.name.description,
-      description: metadata.properties.description.description,
-      img: `https://ipfs.infura.io/ipfs/${metadata.properties.image.description}`,
-      isApproved,
-      owner,
-    };
+    // setItems(datas);
   };
 
   React.useEffect(() => {
     getItems();
-    // getAuctions();
   }, []);
 
   return (
@@ -134,13 +82,13 @@ const HomeContainer = () => {
 
         <SectionCard data1={data1} data2={data2} data3={data3} /> */}
 
-        <SectionHeading
+        {/* <SectionHeading
           img={HomeIcon2}
           text="Latest Items"
           title="New Listed Items"
         />
 
-        <SecNewListed />
+        <SecNewListed /> */}
 
         <SectionHeading
           img={HomeIcon3}
