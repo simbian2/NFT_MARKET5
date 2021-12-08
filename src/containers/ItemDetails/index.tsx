@@ -17,9 +17,12 @@ import SectionCardUp from './SectionCardUp';
 import SectionCardDown from './SectionCardDown';
 import './ItemDetails.css';
 import { useParams } from 'react-router';
+import { useRecoilValue } from 'recoil';
+import selectedAuctionAtom from '../../atoms/selectedAuction';
 
 const ItemDetailsContainer = () => {
   const { id }: { id?: string } = useParams();
+  const selectedAuction = useRecoilValue(selectedAuctionAtom);
 
   useEffect(() => {
     // document.title = 'ItemDetails'
@@ -45,8 +48,8 @@ const ItemDetailsContainer = () => {
           <div className="row">
             <CardImg
               img={
-                id
-                  ? require(`../../assets/img/art/${id}.png`).default
+                selectedAuction
+                  ? selectedAuction.tokenInfo?.img
                   : ItemDetailsitemDetails
               }
             />

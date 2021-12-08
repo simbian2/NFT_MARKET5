@@ -1,7 +1,6 @@
 const addresses = {
-  nft: '0x8C1711de6D88d5B5189116DfE1AC4eAFdc0c1D78',
-  // nftMarket: '0xEf0fDe8942F7f0f3D97b576cca26E516146C5895'
-  nftMarket: '0x614ec5283B1fc38a1eeD4E0701494Ea44505D579'
+  nft: '0x8c1711de6d88d5b5189116dfe1ac4eafdc0c1d78',
+  nftMarket: '0xa6eA7847AD0De5652e5788AD49697Ee56d9a56ae'
 }
 
 export default addresses

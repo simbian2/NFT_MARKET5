@@ -37,7 +37,7 @@ function SectionPrice({ img }: { img: any }) {
               </div>
               <div className="d-flex align-items-start ms-auto flex-column justify-content-center">
                 <h6 className="author-name gradient-text mb-0">
-                  {item.highestBid.bidQty} Npando
+                  {item.highestBid.bidQty} ETH
                 </h6>
                 <p className="mb-0 text-dark">${item.highestBid.bidPrice}</p>
               </div>

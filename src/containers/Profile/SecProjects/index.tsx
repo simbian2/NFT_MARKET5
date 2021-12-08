@@ -19,29 +19,34 @@ function SecProjects() {
   const [myItems, setMyItems] = useRecoilState(myItemsAtom);
 
   const getAuctions = async () => {
-    const userAuctions = await contracts.nftMarketContract.methods
-      .getUserAuctions(account)
-      .call();
+    console.log(account);
+    try {
+      const userAuctions = await contracts.nftMarketContract.methods
+        .getUserAuctions(account)
+        .call();
 
-    console.log('userAuctions', userAuctions);
+      console.log('userAuctions', userAuctions);
 
-    const promises = userAuctions.map(async (auction: IAuction) => {
-      console.log('status', auction.auctionTypes.status);
-      if (auction.auctionTypes.status === '1') {
-        const tokenInfo = await getTokenInfo(parseInt(auction['tokenId']));
+      const promises = userAuctions.map(async (auction: IAuction) => {
+        console.log('status', auction.auctionTypes.status);
+        if (auction.auctionTypes.status === '1') {
+          const tokenInfo = await getTokenInfo(parseInt(auction['tokenId']));
 
-        return {
-          ...auction,
-          tokenInfo,
-        };
-      } else {
-        return null;
-      }
-    });
+          return {
+            ...auction,
+            tokenInfo,
+          };
+        } else {
+          return null;
+        }
+      });
 
-    const data = await Promise.all(promises);
+      const data = await Promise.all(promises);
 
-    setMyAuctions(data.filter((el) => el != null));
+      setMyAuctions(data.filter((el) => el != null));
+    } catch (e) {
+      console.log(e);
+    }
   };
 
   const getTotalSupply = async () => {
@@ -56,23 +61,32 @@ function SecProjects() {
     let i = 1;
     let _ids: number[] = [];
     while (count > 0) {
-      const result = await contracts.nftContract.methods.ownerOf(i).call();
+      try {
+        const result = await contracts.nftContract.methods.ownerOf(i).call();
 
-      if (result === account) {
-        count--;
-        _ids.push(i);
+        if (result === account) {
+          count--;
+          _ids.push(i);
+        }
+      } catch (_) {
+        console.log(i);
       }
 
       i++;
     }
-
+    console.log(_ids);
     setIds(_ids);
   };
 
   const getTokens = async () => {
-    const promises = ids.map(async (id) => getTokenInfo(id));
+    let datas: any[] = [];
+    ids.map(async (id) => {
+      const tokenInfo = await getTokenInfo(id);
 
-    const datas = await Promise.all(promises);
+      datas = [{ ...tokenInfo }, ...datas];
+
+      setMyItems(datas);
+    });
 
     setMyItems(datas);
   };

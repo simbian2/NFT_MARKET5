@@ -33,10 +33,10 @@ const MyAuctionItem: React.FunctionComponent<IMyAuctionItemProps> = (props) => {
         </div>
         <div className="item-cont card-body px-1 pb-0">
           <p className="text-gradient text-dark mb-2 text-sm">
-            {props.tokenInfo?.title}
+            #{props.tokenInfo?.id}
           </p>
           <NavLink className="text-decoration-none" to="">
-            <h5>{props.tokenInfo?.description}</h5>
+            <h5>{props.tokenInfo?.title}</h5>
           </NavLink>
           <p className="mb-4 text-sm">
             Currenct Price :{' '}

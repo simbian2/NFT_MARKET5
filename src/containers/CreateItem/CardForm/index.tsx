@@ -60,8 +60,12 @@ const CardForm = ({ data }: { data: any }) => {
       return;
     }
 
-    if (isLoading) {
-      console.log('isLoading');
+    if (!title) {
+      alert('Item Title is required!');
+      return;
+    }
+    if (!description) {
+      alert('Item Description is required!');
       return;
     }
 
@@ -97,11 +101,16 @@ const CardForm = ({ data }: { data: any }) => {
     console.log('metadataAdded');
     console.log(metadataAdded);
 
-    contracts.nftContract.methods
+    await contracts.nftContract.methods
       .mintNFT(metadataAdded.path)
       .send({ from: walletAccount });
 
+    setCapturedFileBuffer(null);
+    setTitle('');
+    setDescription('');
+    setAgree(false);
     setIsLoading(false);
+    alert('NFT Created!');
   };
 
   return (
@@ -113,9 +122,17 @@ const CardForm = ({ data }: { data: any }) => {
           </p>
         </div>
         <div className="upload-div" {...getRootProps()}>
-          <button className="btn btn-outline-primary btn-sm mb-0">
-            {isDragActive ? 'Drop the files here ...' : 'Upload Item File'}
-          </button>
+          {capturedFileBuffer ? (
+            <img
+              src={`data:image/png;base64,${capturedFileBuffer.toString(
+                'base64'
+              )}`}
+            />
+          ) : (
+            <button className="btn btn-outline-primary btn-sm mb-0">
+              {isDragActive ? 'Drop the files here ...' : 'Upload Item File'}
+            </button>
+          )}
           <input
             type="file"
             name="upload"
@@ -151,6 +168,7 @@ const CardForm = ({ data }: { data: any }) => {
         </div>
         <div className="text-center">
           <button
+            disabled={isLoading}
             type="button"
             className="btn bg-gradient-dark w-100 my-4 mb-2"
             onClick={onSubmit}

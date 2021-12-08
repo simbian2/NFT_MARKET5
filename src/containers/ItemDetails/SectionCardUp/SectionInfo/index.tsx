@@ -1,20 +1,30 @@
 import { NavLink, useParams } from 'react-router-dom';
 import data from '../../../../data/data-components/data-SecNewListed.js';
+import { useRecoilValue } from 'recoil';
+import selectedAuctionAtom from '../../../../atoms/selectedAuction';
 
 function SectionInfo({ img }: { img: any }) {
   const { id }: { id?: string } = useParams();
 
   const item = data[parseInt(id!) - 1];
 
+  const selectedAuction = useRecoilValue(selectedAuctionAtom);
+
   return (
     <div className="col-lg-12">
       <div className="d-flex flex-column h-100">
-        <p className="mb-1">{item.text1}</p>
-        <h4 className="font-weight-bolder">{item.text2}</h4>
-        <p>{item.text3}</p>
+        <p className="mb-1">#{selectedAuction?.tokenId}</p>
+        <h4 className="font-weight-bolder">
+          {selectedAuction?.tokenInfo?.title}
+        </h4>
+        <p>{selectedAuction?.tokenInfo?.description}</p>
         <p className="text-bold mb-30">
           Currenct Price :{' '}
-          <span className="gradient-text text-lg">{item.price} Npando</span>
+          <span className="gradient-text text-lg">
+            {(selectedAuction ? parseInt(selectedAuction.currentPrice) : 0) /
+              10 ** 18}{' '}
+            ETH
+          </span>
         </p>
 
         <div className="row">

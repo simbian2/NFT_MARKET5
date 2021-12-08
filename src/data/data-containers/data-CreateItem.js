@@ -21,7 +21,7 @@ export const data3 = [
   },
   {
     textArea: false,
-    PlaceHolder: 'Item Price in Npando',
+    PlaceHolder: 'Item Price in ETH',
   },
   {
     textArea: false,

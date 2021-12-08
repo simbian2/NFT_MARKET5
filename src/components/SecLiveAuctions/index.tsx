@@ -28,7 +28,7 @@ function SecLiveAuctions() {
     });
 
     const data = await Promise.all(promises);
-
+    console.log(data);
     setAuctions(data);
   };
 

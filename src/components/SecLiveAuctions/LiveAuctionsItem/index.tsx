@@ -1,24 +1,37 @@
 import { NavLink } from 'react-router-dom';
 import { IAuction } from '../../../types/index';
 import { SecLiveAuctionsIconfire } from '../../../utils/allImgs';
+import TimeAgo from 'react-timeago';
+import { useSetRecoilState } from 'recoil';
+import selectedAuctionAtom from '../../../atoms/selectedAuction';
+import BigNumber from 'bignumber.js';
 
 function LiveAuctionsItem(props: IAuction) {
+  const setSelectedAuction = useSetRecoilState(selectedAuctionAtom);
+
   return (
     <div className="col-xl-3 col-md-6 mb-xl-0">
-      <div className="card card-blog card-plain">
-        <div className="position-relative mb-30">
-          <NavLink className="d-block border-radius-xl" to="">
-            <img
-              src={props.tokenInfo?.img}
-              alt="img-blur-shadow"
-              className="img-fluid shadow border-radius-xl"
-              style={{ minWidth: '100%' }}
-            />
-          </NavLink>
-        </div>
+      <NavLink
+        className="card card-blog card-plain"
+        to={`/itemdetails/${props.auctionId}`}
+        style={{ textDecoration: 'none' }}
+        onClick={() => setSelectedAuction(props)}
+      >
+        <div
+          className="position-relative mb-30 img-fluid shadow border-radius-xl"
+          style={{
+            backgroundImage: `url('${props.tokenInfo?.img}')`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            minWidth: '100%',
+            aspectRatio: '1',
+          }}
+        ></div>
         <div className="auction-timer">
           <img src={SecLiveAuctionsIconfire} width="30" alt="" />
-          <p>mint</p>
+          <p>
+            <TimeAgo date={new Date(parseInt(props.expiryDate))} />
+          </p>
         </div>
         {/* <NavLink
           to={path2}
@@ -34,22 +47,34 @@ function LiveAuctionsItem(props: IAuction) {
           <p className="text-gradient text-dark mb-2 text-sm">
             #{props.tokenId}
           </p>
-          <NavLink className="text-decoration-none" to="">
+          <div className="text-decoration-none">
             <h5>{props.tokenInfo?.title}</h5>
-          </NavLink>
-          <p className="mb-4 text-sm">
+          </div>
+          <p className="mb-0 text-sm" style={{ color: 'black' }}>
             Currenct Price :{' '}
             <span className="gradient-text">
-              {parseInt(props.currentPrice) / 10 ** 18} Npando
+              {new BigNumber(parseInt(props.currentPrice))
+                .div(new BigNumber(10).pow(18))
+                .toString()}{' '}
+              ETH
             </span>
           </p>
-          <div className="d-flex align-items-center justify-content-between">
+          <p className="text-sm" style={{ color: 'black' }}>
+            Buy now Price :{' '}
+            <span className="gradient-text">
+              {new BigNumber(parseInt(props.buyNowPrice))
+                .div(new BigNumber(10).pow(18))
+                .toString()}{' '}
+              ETH
+            </span>
+          </p>
+          {/* <div className="d-flex align-items-center justify-content-between">
             <NavLink to="" className="btn btn-outline-primary btn-sm mb-0">
               Buy Now
             </NavLink>
-          </div>
+          </div> */}
         </div>
-      </div>
+      </NavLink>
     </div>
   );
 }

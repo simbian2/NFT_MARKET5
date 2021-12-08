@@ -3,7 +3,7 @@ import { IAuction } from '../types';
 
 const auctionsAtom = atom<IAuction[]>({
   key: 'auctions',
-  default: []
-})
+  default: [],
+});
 
-export default auctionsAtom
+export default auctionsAtom;
