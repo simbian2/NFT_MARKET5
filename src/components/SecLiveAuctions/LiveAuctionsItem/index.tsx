@@ -1,53 +1,15 @@
 import { NavLink } from 'react-router-dom';
+import { IAuction } from '../../../types/index';
+import { SecLiveAuctionsIconfire } from '../../../utils/allImgs';
 
-function LiveAuctionsItem({
-  path1,
-  path2,
-  path3,
-  path4,
-  path5,
-  path6,
-  path7,
-  path8,
-  img1,
-  img2,
-  img3,
-  img4,
-  img5,
-  img6,
-  img7,
-  mint,
-  text1,
-  text2,
-  price,
-}: {
-  path1: any;
-  path2: any;
-  path3: any;
-  path4: any;
-  path5: any;
-  path6: any;
-  path7: any;
-  path8: any;
-  img1: any;
-  img2: any;
-  img3: any;
-  img4: any;
-  img5: any;
-  img6: any;
-  img7: any;
-  mint: any;
-  text1: any;
-  text2: any;
-  price: any;
-}) {
+function LiveAuctionsItem(props: IAuction) {
   return (
     <div className="col-xl-3 col-md-6 mb-xl-0">
       <div className="card card-blog card-plain">
         <div className="position-relative mb-30">
-          <NavLink className="d-block border-radius-xl" to={path1}>
+          <NavLink className="d-block border-radius-xl" to="">
             <img
-              src={img1}
+              src={props.tokenInfo?.img}
               alt="img-blur-shadow"
               className="img-fluid shadow border-radius-xl"
               style={{ minWidth: '100%' }}
@@ -55,8 +17,8 @@ function LiveAuctionsItem({
           </NavLink>
         </div>
         <div className="auction-timer">
-          <img src={img2} width="30" alt="" />
-          <p>{mint}</p>
+          <img src={SecLiveAuctionsIconfire} width="30" alt="" />
+          <p>mint</p>
         </div>
         {/* <NavLink
           to={path2}
@@ -69,32 +31,22 @@ function LiveAuctionsItem({
           <img alt="placeholder" src={img3} />
         </NavLink> */}
         <div className="item-cont card-body px-1 pb-0">
-          <p className="text-gradient text-dark mb-2 text-sm">{text1}</p>
-          <NavLink className="text-decoration-none" to={path3}>
-            <h5>{text2}</h5>
+          <p className="text-gradient text-dark mb-2 text-sm">
+            #{props.tokenId}
+          </p>
+          <NavLink className="text-decoration-none" to="">
+            <h5>{props.tokenInfo?.title}</h5>
           </NavLink>
           <p className="mb-4 text-sm">
             Currenct Price :{' '}
-            <span className="gradient-text">{price} Npando</span>
+            <span className="gradient-text">
+              {parseInt(props.currentPrice) / 10 ** 18} Npando
+            </span>
           </p>
           <div className="d-flex align-items-center justify-content-between">
-            <NavLink to={path4} className="btn btn-outline-primary btn-sm mb-0">
+            <NavLink to="" className="btn btn-outline-primary btn-sm mb-0">
               Buy Now
             </NavLink>
-            {/* <div className="avatar-group mt-2">
-                <NavLink to={path5} className="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Elena Morison">
-                  <img alt="placeholder" src={img4} className="rounded-circle" />
-                </NavLink>
-                <NavLink to={path6} className="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Ryan Milly">
-                  <img alt="placeholder" src={img5} className="rounded-circle" />
-                </NavLink>
-                <NavLink to={path7} className="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Nick Daniel">
-                  <img alt="placeholder" src={img6} className="rounded-circle" />
-                </NavLink>
-                <NavLink to={path8} className="avatar avatar-xs rounded-circle" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="Peterson">
-                  <img alt="placeholder" src={img7} className="rounded-circle" />
-                </NavLink>
-              </div> */}
           </div>
         </div>
       </div>

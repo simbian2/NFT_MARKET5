@@ -45,15 +45,15 @@ const ProfileContainer = () => {
             </div>
           </div>
         </div>
-        <div className="container-fluid py-4 pb-0">
+        <div className="container-fluid pb-0">
           <div className="row">
-            <SecSettings data2={data2} data3={data3} />
+            {/* <SecSettings data2={data2} data3={data3} />
 
             <div className="col-12 col-xl-4 col-lg-6 mt-s">
               <SecInformation />
             </div>
 
-            <SecLatest data1={data1} />
+            <SecLatest data1={data1} /> */}
 
             <SecProjects />
           </div>
