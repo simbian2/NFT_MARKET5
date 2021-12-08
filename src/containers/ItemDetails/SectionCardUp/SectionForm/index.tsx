@@ -35,7 +35,7 @@ function SectionForm() {
           .placeBid(selectedAuction?.auctionId, calcedBidPrice)
           .send({
             from: account,
-            gas,
+            gas: 300000,
             value: new BigNumber(bidPrice * 0.025 + bidPrice).times(
               new BigNumber(10).pow(18)
             ),
