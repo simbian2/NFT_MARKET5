@@ -18,10 +18,18 @@ function SectionInfo({ img }: { img: any }) {
           {selectedAuction?.tokenInfo?.title}
         </h4>
         <p>{selectedAuction?.tokenInfo?.description}</p>
-        <p className="text-bold mb-30">
+        <p className="text-bold mb-0">
           Currenct Price :{' '}
           <span className="gradient-text text-lg">
             {(selectedAuction ? parseInt(selectedAuction.currentPrice) : 0) /
+              10 ** 18}{' '}
+            ETH
+          </span>
+        </p>
+        <p className="text-bold mb-30">
+          Buy now Price :{' '}
+          <span className="gradient-text text-lg">
+            {(selectedAuction ? parseInt(selectedAuction.buyNowPrice) : 0) /
               10 ** 18}{' '}
             ETH
           </span>
