@@ -36,9 +36,9 @@ function SectionForm() {
           .send({
             from: account,
             gas: 300000,
-            value: new BigNumber(bidPrice * 0.025 + bidPrice).times(
-              new BigNumber(10).pow(18)
-            ),
+            value: new BigNumber(bidPrice * 0.025 + bidPrice)
+              .times(new BigNumber(10).pow(18))
+              .toNumber(),
           });
       } catch (e) {
         console.log(e);
