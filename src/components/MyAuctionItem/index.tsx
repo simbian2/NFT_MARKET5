@@ -18,6 +18,14 @@ const MyAuctionItem: React.FunctionComponent<IMyAuctionItemProps> = (props) => {
     console.log(cancelAuction);
   };
 
+  const onClickSettleAuction = async () => {
+    const cancelAuction = await contracts.nftMarketContract.methods
+      .settleAuction(props.auctionId)
+      .send({ from: account });
+
+    console.log(cancelAuction);
+  };
+
   return (
     <div className="col-xl-3 col-md-6 mb-xl-0">
       <div className="card card-blog card-plain">
@@ -51,12 +59,22 @@ const MyAuctionItem: React.FunctionComponent<IMyAuctionItemProps> = (props) => {
             </span>
           </p>
           <div className="d-flex align-items-center justify-content-between">
-            <button
-              className="btn btn-outline-primary btn-sm mb-0"
-              onClick={onClickCancelAuction}
-            >
-              Cancel auction
-            </button>
+            {props.auctionTypes.status === '1' && (
+              <button
+                className="btn btn-outline-primary btn-sm mb-0"
+                onClick={onClickCancelAuction}
+              >
+                Cancel auction
+              </button>
+            )}
+            {props.auctionTypes.status === '2' && (
+              <button
+                className="btn btn-outline-primary btn-sm mb-0"
+                onClick={onClickSettleAuction}
+              >
+                Settle auction
+              </button>
+            )}
           </div>
         </div>
       </div>

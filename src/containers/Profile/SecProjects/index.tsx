@@ -31,7 +31,10 @@ function SecProjects() {
 
       const promises = userAuctions.map(async (auction: IAuction) => {
         console.log('status', auction.auctionTypes.status);
-        if (auction.auctionTypes.status === '1') {
+        if (
+          auction.auctionTypes.status === '1' ||
+          auction.auctionTypes.status === '2'
+        ) {
           const tokenInfo = await getTokenInfo(parseInt(auction['tokenId']));
 
           return {
@@ -65,6 +68,7 @@ function SecProjects() {
     while (count > 0) {
       try {
         const result = await contracts.nftContract.methods.ownerOf(i).call();
+        console.log(result, account);
 
         if (result === account) {
           count--;
