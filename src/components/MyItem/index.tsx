@@ -91,16 +91,16 @@ const MyItem: React.FunctionComponent<IMyItemProps> = (props) => {
   return (
     <div className="col-xl-3 col-md-6 mb-xl-0">
       <div className="card card-blog card-plain">
-        <div className="position-relative mb-30">
-          <NavLink className="d-block border-radius-xl" to="">
-            <img
-              src={props.img}
-              alt="img-blur-shadow"
-              className="img-fluid shadow border-radius-xl"
-              style={{ minWidth: '100%' }}
-            />
-          </NavLink>
-        </div>
+        <div
+          className="position-relative mb-30 img-fluid shadow border-radius-xl"
+          style={{
+            backgroundImage: `url('${props.img}')`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            minWidth: '100%',
+            aspectRatio: '1',
+          }}
+        ></div>
         {/* <NavLink to={path2} className="item-owner" data-bs-toggle="tooltip" data-bs-placement="bottom" title="" data-bs-original-title="view profile">
         <img alt="placeholder" src={img2} />
       </NavLink> */}

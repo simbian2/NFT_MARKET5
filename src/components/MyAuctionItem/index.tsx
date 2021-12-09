@@ -29,16 +29,16 @@ const MyAuctionItem: React.FunctionComponent<IMyAuctionItemProps> = (props) => {
   return (
     <div className="col-xl-3 col-md-6 mb-xl-0">
       <div className="card card-blog card-plain">
-        <div className="position-relative mb-30">
-          <NavLink className="d-block border-radius-xl" to="">
-            <img
-              src={props.tokenInfo?.img}
-              alt="img-blur-shadow"
-              className="img-fluid shadow border-radius-xl"
-              style={{ minWidth: '100%' }}
-            />
-          </NavLink>
-        </div>
+        <div
+          className="position-relative mb-30 img-fluid shadow border-radius-xl"
+          style={{
+            backgroundImage: `url('${props.tokenInfo?.img}')`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center',
+            minWidth: '100%',
+            aspectRatio: '1',
+          }}
+        ></div>
         <div className="item-cont card-body px-1 pb-0">
           <p className="text-gradient text-dark mb-2 text-sm">
             #{props.tokenInfo?.id}
@@ -46,7 +46,7 @@ const MyAuctionItem: React.FunctionComponent<IMyAuctionItemProps> = (props) => {
           <NavLink className="text-decoration-none" to="">
             <h5>{props.tokenInfo?.title}</h5>
           </NavLink>
-          <p className="mb-4 text-sm">
+          <p className="mb-0 text-sm">
             Currenct Price :{' '}
             <span className="gradient-text">
               {parseInt(props.currentPrice) / 10 ** 18} ETH
