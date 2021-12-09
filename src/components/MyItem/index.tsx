@@ -53,9 +53,11 @@ const MyItem: React.FunctionComponent<IMyItemProps> = (props) => {
       .createAuction(
         addresses.nft,
         props.id,
-        new BigNumber(startingPrice).times(new BigNumber(10).pow(18)),
+        new BigNumber(startingPrice)
+          .times(new BigNumber(10).pow(18))
+          .toNumber(),
         title,
-        new BigNumber(buyNowPrice).times(new BigNumber(10).pow(18)),
+        new BigNumber(buyNowPrice).times(new BigNumber(10).pow(18)).toNumber(),
         new Date(expiryDate).getTime(),
         1,
         1,
