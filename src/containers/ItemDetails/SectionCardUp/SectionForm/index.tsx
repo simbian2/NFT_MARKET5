@@ -32,7 +32,7 @@ function SectionForm() {
 
       try {
         await contracts.nftMarketContract.methods
-          .placeBid(selectedAuction?.auctionId, calcedBidPrice)
+          .placeBid(selectedAuction?.auctionId, calcedBidPrice.toNumber())
           .send({
             from: account,
             gas: 300000,
