@@ -22,8 +22,8 @@ const MyItem: React.FunctionComponent<IMyItemProps> = (props) => {
   const [isApproved, setIsApproved] = useRecoilState(isApprovedAtom);
   const [isCreateOpen, setIsCreateOpen] = React.useState<boolean>(false);
   const [title, setTitle] = React.useState<string>('');
-  const [startingPrice, setStartingPrice] = React.useState<number>(0);
-  const [buyNowPrice, setBuyNowPrice] = React.useState<number>(0);
+  const [startingPrice, setStartingPrice] = React.useState<number>();
+  const [buyNowPrice, setBuyNowPrice] = React.useState<number>();
   const [expiryDate, setExpiryDate] = React.useState<string>('');
 
   const onClickCreateAuction = async () => {
@@ -42,6 +42,10 @@ const MyItem: React.FunctionComponent<IMyItemProps> = (props) => {
     }
     if (!buyNowPrice) {
       alert('Buy now price is required!');
+      return;
+    }
+    if (startingPrice >= buyNowPrice) {
+      alert('Buy now price have to bigger than Starting price');
       return;
     }
     if (!expiryDate) {
