@@ -1,6 +1,5 @@
 import { useWeb3React } from '@web3-react/core';
 import React from 'react';
-import { NavLink } from 'react-router-dom';
 import { useSetRecoilState } from 'recoil';
 import walletAccountAtom from '../../../../atoms/walletAccount';
 import ITag from '../../../../components/ITag';

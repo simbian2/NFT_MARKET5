@@ -41,7 +41,7 @@ const ProfileContainer = () => {
 
               <SecName />
 
-              {/* <SecNavWrapper /> */}
+              <SecNavWrapper />
             </div>
           </div>
         </div>
