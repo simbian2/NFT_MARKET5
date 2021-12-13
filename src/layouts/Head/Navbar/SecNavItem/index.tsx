@@ -20,7 +20,10 @@ function SecNavItem({ hideShowSidebar }: { hideShowSidebar: any }) {
         {account ? (
           <button
             className="btn btn-white bg-light mb-0 w-100"
-            onClick={() => deactivate()}
+            onClick={() => {
+              deactivate();
+              window.localStorage.removeItem('wallet');
+            }}
           >
             {account.substr(0, 7)}...
             {account.substr(account.length - 7)}
@@ -28,7 +31,10 @@ function SecNavItem({ hideShowSidebar }: { hideShowSidebar: any }) {
         ) : (
           <button
             className="btn btn-white bg-light mb-0 w-100"
-            onClick={() => activate(injectedConnector)}
+            onClick={() => {
+              activate(injectedConnector);
+              window.localStorage.setItem('wallet', 'metamask');
+            }}
           >
             Connect Wallet
           </button>

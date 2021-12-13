@@ -15,14 +15,19 @@ import SectionCardUp from './SectionCardUp';
 import SectionCardDown from './SectionCardDown';
 import './ItemDetails.css';
 import { useParams } from 'react-router';
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue, useRecoilState } from 'recoil';
 import React from 'react';
 import { IAuction } from '../../types';
 import contracts from '../../constants/contracts';
+import { useInterval } from 'usehooks-ts';
+import isAuctionFinishAtom from '../../atoms/isAuctionFinish';
 
 const ItemDetailsContainer = () => {
   const { id }: { id?: string } = useParams();
   const [auction, setAuction] = React.useState<IAuction>();
+
+  const [isAuctionFinish, setIsAuctionFinish] =
+    useRecoilState(isAuctionFinishAtom);
 
   const getAuction = async () => {
     try {
@@ -37,6 +42,14 @@ const ItemDetailsContainer = () => {
       console.log(e);
     }
   };
+
+  useInterval(
+    () => {
+      getAuction();
+      setIsAuctionFinish(false);
+    },
+    isAuctionFinish ? 1000 : null
+  );
 
   React.useEffect(() => {
     getAuction();

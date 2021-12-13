@@ -22,7 +22,7 @@ function SectionCardUp(auction: IAuction) {
             <div className="row align-items-center">
               <SectionPrice {...auction} />
 
-              <SectionForm />
+              <SectionForm {...auction} />
             </div>
           </div>
         </div>

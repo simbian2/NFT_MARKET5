@@ -1,48 +1,56 @@
 import { useParams } from 'react-router-dom';
 import data from '../../../../data/data-components/data-SecNewListed.js';
 import ListTag from './ListTag';
-import { useRecoilValue } from 'recoil';
+import { useRecoilValue, useRecoilState } from 'recoil';
 import selectedAuctionAtom from '../../../../atoms/selectedAuction';
 import React from 'react';
 import contracts from '../../../../constants/contracts';
 import { IBid, IAuction } from '../../../../types/index';
+import { useInterval } from 'usehooks-ts';
+import isAuctionFinishAtom from '../../../../atoms/isAuctionFinish';
 
 function SectionBids(auction: IAuction) {
   const { id }: { id?: string } = useParams();
   const item = data[parseInt(id!) - 1];
 
   const [bids, setBids] = React.useState<IBid[]>([]);
-
-  const selectedAuction = useRecoilValue(selectedAuctionAtom);
+  const [isAuctionFinish, setIsAuctionFinish] =
+    useRecoilState(isAuctionFinishAtom);
 
   const getBids = async () => {
-    if (selectedAuction) {
-      const result = await contracts.nftMarketContract.methods
-        .getBids(selectedAuction.auctionId)
-        .call();
+    const result = await contracts.nftMarketContract.methods
+      .getBids(auction.auctionId)
+      .call();
 
-      console.log(result);
-      let bids: IBid[] = [];
-      result.map((a: any) => {
-        bids = [
-          ...bids,
-          {
-            bidId: a['bidId'],
-            bidder: a['bidder'],
-            price: a['price'],
-            timestamp: a['timestamp'],
-          },
-        ];
-      });
-      console.log(bids);
-      setBids(bids);
-      // setBids(result);
-    }
+    console.log(result);
+    let bids: IBid[] = [];
+    result.map((a: any) => {
+      bids = [
+        ...bids,
+        {
+          bidId: a['bidId'],
+          bidder: a['bidder'],
+          price: a['price'],
+          timestamp: a['timestamp'],
+        },
+      ];
+    });
+    console.log(bids);
+    setBids(bids);
+    // setBids(result);
   };
+
+  useInterval(
+    () => {
+      getBids();
+      setIsAuctionFinish(false);
+    },
+    isAuctionFinish ? 1000 : null
+  );
 
   React.useEffect(() => {
     getBids();
-  }, [selectedAuction]);
+  }, []);
 
   return (
     <div className="col-lg-6">

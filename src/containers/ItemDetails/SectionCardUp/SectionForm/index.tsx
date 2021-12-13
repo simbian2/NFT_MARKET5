@@ -1,17 +1,18 @@
 import { NavLink } from 'react-router-dom';
 import { useWeb3React } from '@web3-react/core';
-import { useRecoilValue } from 'recoil';
-import selectedAuctionAtom from '../../../../atoms/selectedAuction';
+import { useRecoilValue, useSetRecoilState } from 'recoil';
 import contracts from '../../../../constants/contracts';
 import React from 'react';
 import BigNumber from 'bignumber.js';
 import web3 from '../../../../connection/web3';
+import isAuctionFinishAtom from '../../../../atoms/isAuctionFinish';
+import { IAuction } from '../../../../types';
 
-function SectionForm() {
+function SectionForm(auction: IAuction) {
   const { account } = useWeb3React();
 
   const [bidPrice, setBidPrice] = React.useState<number>(0);
-  const selectedAuction = useRecoilValue(selectedAuctionAtom);
+  const setIsAuctionFinish = useSetRecoilState(isAuctionFinishAtom);
 
   const calcedBidPrice = React.useMemo(
     () => new BigNumber(bidPrice).times(new BigNumber(10).pow(18)),
@@ -21,28 +22,30 @@ function SectionForm() {
   const onPlaceBid = async () => {
     const gas = await web3.eth.getGasPrice();
 
-    if (selectedAuction) {
-      const currentPrice = new BigNumber(parseInt(selectedAuction.currentPrice))
-        .div(new BigNumber(10).pow(18))
-        .toNumber();
-      if (currentPrice > bidPrice) {
-        alert('It should be higher than the current bid amount');
-        return;
-      }
+    const currentPrice = new BigNumber(parseInt(auction.currentPrice))
+      .div(new BigNumber(10).pow(18))
+      .toNumber();
+    if (currentPrice > bidPrice) {
+      alert('It should be higher than the current bid amount');
+      return;
+    }
 
-      try {
-        await contracts.nftMarketContract.methods
-          .placeBid(selectedAuction?.auctionId, calcedBidPrice.toNumber())
-          .send({
-            from: account,
-            gas: 300000,
-            value: new BigNumber(bidPrice * 0.025 + bidPrice)
-              .times(new BigNumber(10).pow(18))
-              .toNumber(),
-          });
-      } catch (e) {
-        console.log(e);
-      }
+    try {
+      await contracts.nftMarketContract.methods
+        .placeBid(auction.auctionId, calcedBidPrice.toNumber().toFixed(0))
+        .send({
+          from: account,
+          gas: 300000,
+          value: new BigNumber(bidPrice * 0.025 + bidPrice)
+            .times(new BigNumber(10).pow(18))
+            .toNumber()
+            .toFixed(0),
+        });
+
+      setBidPrice(0);
+      setIsAuctionFinish(true);
+    } catch (e) {
+      console.log(e);
     }
   };
 
@@ -67,7 +70,7 @@ function SectionForm() {
 
           <div className="text-center">
             {account ? (
-              selectedAuction?.seller !== account ? (
+              auction?.seller !== account ? (
                 <button
                   type="button"
                   className="btn bg-gradient-primary fs-6 fw-bold w-100 mb-0"

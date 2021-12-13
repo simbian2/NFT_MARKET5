@@ -12,6 +12,8 @@ import { IAuction } from '../../../types';
 import addresses from '../../../constants/addresses';
 import { getTokenInfo } from '../../../utils';
 import { useMoralisWeb3Api } from 'react-moralis';
+import { useInterval } from 'usehooks-ts';
+import isAuctionFinishAtom from '../../../atoms/isAuctionFinish';
 
 function SecProjects() {
   const { account: mAccount } = useMoralisWeb3Api();
@@ -22,6 +24,9 @@ function SecProjects() {
   const [balance, setBalance] = React.useState<number>(0);
   const [myAuctions, setMyAuctions] = useRecoilState(myAuctionsAtom);
   const [myItems, setMyItems] = useRecoilState(myItemsAtom);
+
+  const [isAuctionFinish, setIsAuctionFinish] =
+    useRecoilState(isAuctionFinishAtom);
 
   const getAuctions = async () => {
     console.log(account);
@@ -80,6 +85,17 @@ function SecProjects() {
       });
     }
   };
+
+  useInterval(
+    () => {
+      if (account) {
+        getTotalSupply();
+        getAuctions();
+        setIsAuctionFinish(false);
+      }
+    },
+    isAuctionFinish ? 1000 : null
+  );
 
   React.useEffect(() => {
     if (account) {

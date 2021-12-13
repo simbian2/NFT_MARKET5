@@ -4,17 +4,21 @@ import contracts from '../../constants/contracts';
 import addresses from '../../constants/addresses';
 import { useWeb3React } from '@web3-react/core';
 import { IAuction } from '../../types';
+import isAuctionFinishAtom from '../../atoms/isAuctionFinish';
+import { useSetRecoilState } from 'recoil';
 
 interface IMyAuctionItemProps extends IAuction {}
 
 const MyAuctionItem: React.FunctionComponent<IMyAuctionItemProps> = (props) => {
   const { account } = useWeb3React();
+  const setIsAuctionFinish = useSetRecoilState(isAuctionFinishAtom);
 
   const onClickCancelAuction = async () => {
     const cancelAuction = await contracts.nftMarketContract.methods
       .cancelAuction(props.auctionId)
       .send({ from: account });
 
+    setIsAuctionFinish(true);
     console.log(cancelAuction);
   };
 
@@ -23,6 +27,7 @@ const MyAuctionItem: React.FunctionComponent<IMyAuctionItemProps> = (props) => {
       .settleAuction(props.auctionId)
       .send({ from: account });
 
+    setIsAuctionFinish(true);
     console.log(cancelAuction);
   };
 

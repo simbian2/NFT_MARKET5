@@ -12,7 +12,9 @@ function ListTag(props: IBid) {
             </div> */}
           <div className="d-flex flex-column justify-content-center">
             <h6 className="text-sm font-weight-normal mb-1">
-              <span className="font-weight-bold">By</span> {props.bidder}
+              <span className="font-weight-bold">By</span>{' '}
+              {props.bidder.substr(0, 7)}...
+              {props.bidder.substr(props.bidder.length - 7)}
             </h6>
             <p className="text-xs text-secondary mb-0">
               <i className="fa fa-clock me-1" aria-hidden="true"></i>

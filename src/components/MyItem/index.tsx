@@ -6,8 +6,10 @@ import { useWeb3React } from '@web3-react/core';
 import { injectedConnector } from '../../connector/index';
 import Input from '../../containers/CreateItem/CardForm/Input';
 import BigNumber from 'bignumber.js';
-import { useRecoilState } from 'recoil';
+import { useRecoilState, useSetRecoilState } from 'recoil';
 import isApprovedAtom from '../../atoms/isApproved';
+import isAuctionFinishAtom from '../../atoms/isAuctionFinish';
+import moment from 'moment';
 
 interface IMyItemProps {
   id: number;
@@ -25,6 +27,8 @@ const MyItem: React.FunctionComponent<IMyItemProps> = (props) => {
   const [startingPrice, setStartingPrice] = React.useState<number>();
   const [buyNowPrice, setBuyNowPrice] = React.useState<number>();
   const [expiryDate, setExpiryDate] = React.useState<string>('');
+
+  const setIsAuctionFinish = useSetRecoilState(isAuctionFinishAtom);
 
   const onClickCreateAuction = async () => {
     if (!isCreateOpen) {
@@ -48,6 +52,10 @@ const MyItem: React.FunctionComponent<IMyItemProps> = (props) => {
       alert('Buy now price have to bigger than Starting price');
       return;
     }
+    if (startingPrice < 0.001) {
+      alert('Starting price have to bigger than 0.001');
+      return;
+    }
     if (!expiryDate) {
       alert('Expiry date is required!');
       return;
@@ -68,6 +76,8 @@ const MyItem: React.FunctionComponent<IMyItemProps> = (props) => {
         1
       )
       .send({ from: account });
+
+    setIsAuctionFinish(true);
 
     console.log(createAuction);
   };
@@ -140,6 +150,8 @@ const MyItem: React.FunctionComponent<IMyItemProps> = (props) => {
                 placeholder="Expiry date"
                 value={expiryDate}
                 onChange={(e) => setExpiryDate(e.target.value)}
+                min={moment().add(1, 'days').toISOString().slice(0, -8)}
+                max={moment().add(1, 'years').toISOString().slice(0, -8)}
               />
             </div>
           )}
