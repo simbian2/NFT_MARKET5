@@ -14,7 +14,7 @@ const ContactContainer = () => {
       <NavbarLast />
       <section className="h-100-vh mb-8">
         <SecHeadContact />
-        <div className="container">
+        {/* <div className="container">
           <div
             className="row mt-lg-n10 mt-md-n11 mt-n10"
             style={{ marginTop: '-10rem' }}
@@ -28,7 +28,7 @@ const ContactContainer = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
       </section>
     </>
   );
