@@ -78,12 +78,14 @@ const getTokenInfo = async (id: number) => {
       .getApproved(id)
       .call();
     const owner = await contracts.nftContract.methods.ownerOf(id).call();
-
+    console.log('aaa');
     return {
       id,
       title: metadata.properties.name.description,
       description: metadata.properties.description.description,
-      category: metadata.properties.category.description || 1,
+      category: metadata.properties.category
+        ? metadata.properties.category.description
+        : 1,
       img: `https://ipfs.infura.io/ipfs/${metadata.properties.image.description}`,
       isApproved,
       owner,
