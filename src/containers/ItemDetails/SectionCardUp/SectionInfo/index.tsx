@@ -5,6 +5,7 @@ import BigNumber from 'bignumber.js';
 import contracts from '../../../../constants/contracts';
 import { useWeb3React } from '@web3-react/core';
 import { IAuction } from '../../../../types/index';
+import addresses from '../../../../constants/addresses';
 
 function SectionInfo(auction: IAuction) {
   const { account } = useWeb3React();
@@ -64,10 +65,37 @@ function SectionInfo(auction: IAuction) {
                 <strong className="text-dark mr-10">Item Artist: </strong>
                 {auction.seller}
               </li>
-              {/* <li className="list-group-item border-0 ps-0 text-sm">
-                <strong className="text-dark mr-10">Created:</strong>{' '}
-                {item.created || ''}
-              </li> */}
+              <li className="list-group-item border-0 ps-0 text-sm">
+                <strong className="text-dark mr-10">
+                  <a
+                    href={`https://testnets.opensea.io/assets/${addresses.nft}/${auction.tokenInfo?.id}`}
+                    rel="noreferrer"
+                    target="_blank"
+                  >
+                    <svg
+                      viewBox="0 0 26 20"
+                      fill="currentColor"
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="22"
+                      height="22"
+                    >
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M3.396 9.535a.814.814 0 000 .93c.749 1.06 2.03 2.657 3.71 3.98C8.791 15.77 10.788 16.75 13 16.75c2.211 0 4.208-.98 5.893-2.306 1.681-1.322 2.962-2.92 3.71-3.98a.814.814 0 000-.929c-.748-1.06-2.029-2.657-3.71-3.98C17.208 4.23 15.211 3.25 13 3.25c-2.212 0-4.209.98-5.894 2.306-1.68 1.322-2.961 2.92-3.71 3.98zM5.56 3.591C7.5 2.065 10.03.75 13 .75c2.97 0 5.499 1.315 7.439 2.84 1.943 1.53 3.384 3.339 4.209 4.506l.003.005a3.315 3.315 0 010 3.798l-.003.005c-.825 1.167-2.266 2.977-4.209 4.505-1.94 1.526-4.47 2.841-7.44 2.841-2.969 0-5.499-1.315-7.439-2.84-1.942-1.53-3.384-3.339-4.208-4.506l-.004-.005a3.314 3.314 0 010-3.798l.004-.005C2.176 6.929 3.618 5.119 5.56 3.59z"
+                        fill="currentColor"
+                      ></path>
+                      <path
+                        fill-rule="evenodd"
+                        clip-rule="evenodd"
+                        d="M13 7.25a2.75 2.75 0 100 5.5 2.75 2.75 0 000-5.5zM7.75 10a5.25 5.25 0 1110.5 0 5.25 5.25 0 01-10.5 0z"
+                        fill="currentColor"
+                      ></path>
+                    </svg>
+                    <span style={{ marginLeft: 10 }}>View on OpenSea</span>
+                  </a>
+                </strong>
+              </li>
               {/* <li className="list-group-item border-0 ps-0 text-sm">
                 <strong className="text-dark">Item Size:</strong>{' '}
                 {item.itemSize || ''}
