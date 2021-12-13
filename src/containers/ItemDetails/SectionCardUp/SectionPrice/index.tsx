@@ -1,8 +1,10 @@
 import { NavLink, useParams } from 'react-router-dom';
 import data from '../../../../data/data-components/data-SecNewListed.js';
+import { IAuction } from '../../../../types';
 import './SectionPrice.css';
+import BigNumber from 'bignumber.js';
 
-function SectionPrice({ img }: { img: any }) {
+function SectionPrice(auction: IAuction) {
   const { id }: { id?: string } = useParams();
   const item = data[parseInt(id!) - 1];
 
@@ -25,21 +27,23 @@ function SectionPrice({ img }: { img: any }) {
                     <img src={img} alt="kal" width="40" className="border-radius-lg shadow" />
                   </NavLink> */}
               <div className="d-flex align-items-start flex-column justify-content-center">
-                <NavLink to="/" className="text-decoration-none">
-                  <h6 className="author-name">{item.highestBid.bidderName}</h6>
-                </NavLink>
-                <NavLink
-                  className="btn btn-link autho-link text-decoration-none"
-                  to="/"
-                >
-                  {item.highestBid.bidderId}
-                </NavLink>
+                <div className="text-decoration-none">
+                  <h6 className="author-name">
+                    {auction.highestBidder.substr(0, 7)}...
+                    {auction.highestBidder.substr(
+                      auction.highestBidder.length - 7
+                    )}
+                  </h6>
+                </div>
               </div>
               <div className="d-flex align-items-start ms-auto flex-column justify-content-center">
                 <h6 className="author-name gradient-text mb-0">
-                  {item.highestBid.bidQty} ETH
+                  {new BigNumber(auction.currentPrice)
+                    .div(new BigNumber(10).pow(18))
+                    .toString()}{' '}
+                  ETH
                 </h6>
-                <p className="mb-0 text-dark">${item.highestBid.bidPrice}</p>
+                {/* <p className="mb-0 text-dark">${item.highestBid.bidPrice}</p> */}
               </div>
             </li>
           </ul>

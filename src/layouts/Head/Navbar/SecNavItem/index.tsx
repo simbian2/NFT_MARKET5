@@ -23,7 +23,8 @@ function SecNavItem({ hideShowSidebar }: { hideShowSidebar: any }) {
             className="btn btn-white bg-light mb-0 w-100"
             onClick={() => deactivate()}
           >
-            {account}
+            {account.substr(0, 7)}...
+            {account.substr(account.length - 7)}
           </button>
         ) : (
           <button

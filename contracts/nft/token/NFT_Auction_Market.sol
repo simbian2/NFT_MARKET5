@@ -29,36 +29,6 @@ contract NAMarket is Ownable, ReentrancyGuard, ERC1155Receiver {
   using SafeMath for uint256;
   // Add math utilities missing in solidity
   using Math for uint256;
-  
-  /* Constructor parameters */
-  // minBidSize,minAuctionLiveness, feePercentage
-  address public adminAddress; 
-
-  // Minimum amount by which a new bid has to exceed previousBid 0.0001 = 1
-  uint256 public minBidSize = 1;
-  /* Minimum duration in seconds for which the auction has to be live
-   * timestamp 1h = 3600s
-   * default mainnet 10h / testnet 10m
-  */
-  uint256 public minAuctionLiveness = 10 * 60;
-    
-  // //transfer gas
-  // uint256 public gasSize = 100000;
-  // update fee address only owner
-  address public feeAddress;
-  // default fee percentage : 2.5%
-  uint256 public feePercentage = 250;
-  //total volume
-  uint256 public totalMarketVolume;
-  //total Sales
-  uint256 public totalSales;
-  //create auction on/off default = true
-  bool public marketStatus = true;
-
-
-  // Save Users credit balances (to be used when they are outbid)
-  mapping(address => uint256) public userPriceList;
-
   using Counters for Counters.Counter;
   // Number of auctions ever listed
   Counters.Counter public totalAuctionCount;
@@ -67,9 +37,10 @@ contract NAMarket is Ownable, ReentrancyGuard, ERC1155Receiver {
 
   enum TokenType { NONE, ERC721, ERC1155 }
   enum AuctionStatus { NONE, OPEN, CLOSE, SETTLED, CANCELED }
-  //enum Categories { NONE, Art, Sports, Gaming, Music, Entertainment, TradingCards, Collectibles }
-  enum Sort { ASC, DESC, NEW, END }
-
+  enum Sort { ASC, DESC, NEW, END, HOT }
+  enum BidType { BID, CANCELED }
+  
+  /* Constructor parameters */
   struct Auction {
       address contractAddress;
       uint256 tokenId;
@@ -93,28 +64,52 @@ contract NAMarket is Ownable, ReentrancyGuard, ERC1155Receiver {
   struct previousInfo {
     uint256 previousPrice;
   }
-
-  mapping(uint256 => previousInfo) private previousPriceList;
-
-  mapping(uint256 => Auction) public auctions;
-
   //bid
   struct Bid {
         uint256 bidId;
         address bidder;
         uint256 price;
+        BidType Type;
         uint256 timestamp;
   }
-  mapping (uint256 => Bid[]) private bidList;
-  // Unique seller address
-  address[] private uniqSellerList;
-
   struct SellerSale {
     address seller;
     uint256 price;
     uint256 timestamp;
   }
+
+  // minBidSize,minAuctionLiveness, feePercentage
+  address public adminAddress; 
+
+  // Minimum amount by which a new bid has to exceed previousBid 0.0001 = 1
+  uint256 public minBidSize = 1;
+  /* Minimum duration in seconds for which the auction has to be live
+   * timestamp 1h = 3600s
+   * default  10m
+  */
+  uint256 public minAuctionLiveness = 10 * 60;
+    
+  // //transfer gas
+  // uint256 public gasSize = 100000;
+  address public feeAddress;
+  uint256 public feePercentage = 250; // default fee percentage : 2.5%
+  uint256 public createAuctionFee = 1;// default 0.001
+
+  uint256 public totalMarketVolume;
+  uint256 public totalSales;
+  //create auction on/off default = true
+  bool public marketStatus = true;
+
+  // Save Users credit balances (to be used when they are outbid)
+  mapping(address => uint256) public userPriceList;
   mapping (address => SellerSale[]) private sellerSales;
+  mapping(uint256 => previousInfo) private previousPriceList;
+  mapping(uint256 => Auction) public auctions;
+  mapping (uint256 => Bid[]) private bidList;
+  address[] private uniqSellerList;// Unique seller address
+  address[] private blackList; 
+  uint256[] private recommendAuctionIds;
+  
   // EVENTS
   event AuctionCreated(
       uint256 auctionId,
@@ -131,13 +126,24 @@ contract NAMarket is Ownable, ReentrancyGuard, ERC1155Receiver {
   event BidFailed(uint256 auctionId, uint256 bidPrice);
   event UserCredited(address creditAddress, uint256 amount);
   event priceBid(uint256 auctionId, uint256 cPrice, uint256 bidPrice);
+  event AdminAuctionCancel(uint256 auctionId, bool feeApproved);
+  event CancelBid(uint256 auctionId);
+
 
 
   // MODIFIERS
   modifier onlyAdmin() {
         require(msg.sender == adminAddress, "admin: wut?");
         _;
+  }
+  modifier checkBlackList() {
+    for (uint256 i = 0; i < blackList.length ; i++) {
+      if (blackList[i] == msg.sender) {
+        require(false, "Blacklist wallet address.");
+      }
     }
+    _;
+  }
 
   modifier openAuction(uint256 auctionId) {
       require(auctions[auctionId].auctionTypes.status == AuctionStatus.OPEN, "Transaction only open Auctions");
@@ -179,6 +185,8 @@ contract NAMarket is Ownable, ReentrancyGuard, ERC1155Receiver {
       require(marketStatus, "Market is closed");
         _;
   }
+
+  /**     functions             */
   // Update market status
   function setMarkStatus(bool _marketStatus) public onlyOwner {
         marketStatus = _marketStatus;
@@ -198,6 +206,47 @@ contract NAMarket is Ownable, ReentrancyGuard, ERC1155Receiver {
   //       gasSize = _gasSize;
   // }
 
+  // update blackList 
+  //approved true add address 
+  function setBlackList(address blackAddress, bool approved) public onlyAdmin {
+    if (approved) {
+        blackList.push(blackAddress);
+    } else {
+      for (uint256 i = 0; i < blackList.length ; i++) {
+        if (blackList[i] == blackAddress) {
+          for (uint j = i; j < blackList.length - 1; j++) {
+            blackList[j] = blackList[j + 1];
+          }
+          blackList.pop();
+        }
+      }
+    }
+  }
+  //Recommendation. Auction
+  function setRecommendAuctionId(uint256 auctionId, bool approved) public onlyAdmin {
+    if (approved) {
+      recommendAuctionIds.push(auctionId);
+    } else {
+      for (uint256 i = 0; i < recommendAuctionIds.length ; i++) {
+        if (recommendAuctionIds[i] == auctionId) {
+          for (uint j = i; j < recommendAuctionIds.length - 1; j++) {
+            recommendAuctionIds[j] = recommendAuctionIds[j + 1];
+          }
+          blackList.pop();
+        }
+      }
+    }
+  }
+
+  function checkBan(address blackAddress) public view returns (bool) {
+    bool result = false;
+    for (uint256 i = 0; i < blackList.length ; i++) {
+      if (blackList[i] == blackAddress) {
+        result = true;
+      }
+    }
+    return (result);
+  }
   // Update minBidSize 
   function setMinBidSize(uint256 _minBidSize) public onlyAdmin {
         minBidSize = _minBidSize;
@@ -210,6 +259,10 @@ contract NAMarket is Ownable, ReentrancyGuard, ERC1155Receiver {
   function setFeePercentage(uint256 _feePercentage) public onlyAdmin {
         require(_feePercentage <= 10000, "Fee percentages exceed max");
         feePercentage = _feePercentage;
+  }
+  // Update Fee percentages 
+  function setCreateAuctionFee(uint256 _createAuctionFee) public onlyAdmin {
+        createAuctionFee = (_createAuctionFee.mul(10**18)).div(1000);
   }
 
   // Calculate fee due for an auction based on its feePrice
@@ -227,11 +280,13 @@ contract NAMarket is Ownable, ReentrancyGuard, ERC1155Receiver {
   function createAuction(address _contractAddress, uint256 _tokenId, uint256 _startingPrice, string memory auctionTitle,
     uint256 _buyNowPrice, uint256 expiryDate, uint256 _category, TokenType _tokenType,
     uint256 _quantity
-    ) public marketStatusCheck() nonReentrant 
+    ) public payable marketStatusCheck() checkBlackList() nonReentrant 
     returns(uint256 auctionId){
-
+      require(msg.value == createAuctionFee, "The fee amount is different.");
       require(expiryDate.sub(minAuctionLiveness) > block.timestamp, "Expiry date is not far enough in the future");
       require(_tokenType != TokenType.NONE, "Invalid token type provided");
+      require(_buyNowPrice > _startingPrice, "Invalid _buyNowPrice");
+
 
       uint256 quantity = 1;
       if(_tokenType == TokenType.ERC1155){
@@ -346,24 +401,31 @@ contract NAMarket is Ownable, ReentrancyGuard, ERC1155Receiver {
    */
   function placeBid(uint256 auctionId, uint256 bidPrice) public payable openAuction(auctionId) nonExpiredAuction(auctionId) nonReentrant{
       Auction storage auction = auctions[auctionId];
-      require(bidPrice >= auction.currentPrice.add(minBidSize/10000), "Bid has to exceed current price by the minBidSize or more");
+      require(bidPrice >= auction.currentPrice.add((minBidSize.mul(10**18)/10000)), "Bid has to exceed current price by the minBidSize or more");
       require(bidPrice > auction.currentPrice, "It should be higher than the current bid amount");
       emit priceBid(auctionId, msg.value, bidPrice.add(calculateFee(bidPrice)));
 
       require(msg.value == bidPrice.add(calculateFee(bidPrice)), "The payment amount and the bid amount are different");
 
-      
       uint256 creditAmount;
       // If this is not the first bid, credit the previous highest bidder
       address previousBidder = auction.highestBidder;
-      //TODO: buy now test
+    
       if (auction.buyNowPrice <= bidPrice) {
-        auction.auctionTypes.status = AuctionStatus.CLOSE;
+        if (auction.auctionTypes.tokenType == TokenType.ERC721) {
+          auction.auctionTypes.status = AuctionStatus.CLOSE;
+        } else if (auction.auctionTypes.tokenType == TokenType.ERC1155){
+          if (auction.auctionTypes.quantity == 0) {
+            auction.auctionTypes.status = AuctionStatus.CLOSE;
+          } else {
+            auction.auctionTypes.quantity--;
+          }
+        }
       }
 
       //bid list 
       uint256 newBidId = bidList[auctionId].length + 1;
-      Bid memory newBid = Bid(newBidId, msg.sender, bidPrice, block.timestamp);
+      Bid memory newBid = Bid(newBidId, msg.sender, bidPrice, BidType.BID, block.timestamp);
       bidList[auctionId].push(newBid);
 
       //bid refund
@@ -405,12 +467,51 @@ contract NAMarket is Ownable, ReentrancyGuard, ERC1155Receiver {
         revert("Invalid token type for transfer");
       }
   }
+  //cancel auction
+  function adminCancelAuction(uint256 auctionId, bool feeApproved) public openAuction(auctionId) onlyAdmin  nonReentrant{
+    Auction storage auction = auctions[auctionId];
+    address previousBidder = auction.highestBidder;
+    uint256 creditAmount = 0;
+    //bid refund
+    if(previousBidder != address(0)){
+      if (feeApproved) {
+        creditAmount = auction.currentPrice; //only price, Cancellation fee.
+      } else {
+        creditAmount = previousPriceList[auctionId].previousPrice; //fee+ price
+      }
+      creditUser(previousBidder, creditAmount);
+    }
+    auction.auctionTypes.status = AuctionStatus.CANCELED;
+  
+    emit AdminAuctionCancel(auctionId, feeApproved);
+  }
+  //cancel bid
+  function cancelBid(uint256 auctionId) public openAuction(auctionId) nonExpiredAuction(auctionId) nonReentrant {
+    Auction storage auction = auctions[auctionId];
+    require(msg.sender == auction.highestBidder, "Invalid Request");
+    address previousBidder = auction.highestBidder;
+    uint256 creditAmount = 0;
+    //bid refund
+    if(previousBidder != address(0)){
+      creditAmount = auction.currentPrice; //only price, Cancellation fee.
+      creditUser(previousBidder, creditAmount);
+    }
+    uint256 newBidId = bidList[auctionId].length + 1;
+    Bid memory newBid = Bid(newBidId, msg.sender, auction.currentPrice, BidType.BID, block.timestamp);
+    bidList[auctionId].push(newBid);
+    
+    auction.highestBidder = address(0);
+    previousPriceList[auctionId].previousPrice = 0;
+  
+    emit CancelBid(auctionId);
+  }
+
 
   //data func auction list 
   function getOpenAuctions(uint256 category, Sort sort, string memory keyword, 
   uint256 offset, uint256 limit) public view returns 
-  (Auction[] memory resultAuctions, uint256 nextOffset, uint256 totalCount) {
-        uint256 totalLen = totalAuctionCount.current()-closedAuctionCount.current();
+  (Auction[] memory, uint256, uint256) {
+        uint256 totalLen = totalAuctionCount.current();
         Auction[] memory values = new Auction[] (totalLen);
         uint256 resultLen = 0;
         bytes memory checkString = bytes(keyword);
@@ -419,16 +520,18 @@ contract NAMarket is Ownable, ReentrancyGuard, ERC1155Receiver {
         //auction open, type count
         for (uint256 i = 1; i <= totalLen; i++) {
           if(auctions[i].auctionTypes.status == AuctionStatus.OPEN){
-            values[i-1] = auctions[i];
+            values[resultLen] = auctions[i];
+            resultLen++;
           }  
         }
+        resultLen = 0;
         if (checkString.length > 0) {
           values = sfilter(values, category, keyword);
         } else if (category != 0) {
           values = cfilter(values, category);
         }
 
-        for (uint256 i = 0; i < totalLen; i++) {
+        for (uint256 i = 0; i < values.length; i++) {
           if(values[i].seller != address(0)){
             resultLen++;
           }  
@@ -466,7 +569,64 @@ contract NAMarket is Ownable, ReentrancyGuard, ERC1155Receiver {
         }
         
   }
+
+  //seller open auction list
+  function getSellerAuctions(address sellerAddress, Sort sort, uint256 offset, uint256 limit) public view returns 
+  (Auction[] memory, uint256, uint256) {
+        uint256 totalLen = totalAuctionCount.current();
+        Auction[] memory values = new Auction[] (totalLen);
+        uint256 resultLen = 0;
+
+        //auctionId is no zero.
+        //auction open, type count
+        for (uint256 i = 1; i <= totalLen; i++) {
+          if(auctions[i].auctionTypes.status == AuctionStatus.OPEN
+            && auctions[i].seller == sellerAddress){
+            values[resultLen] = auctions[i];
+            resultLen++;
+          }  
+        }
+
+        //sort
+        values = sortMap(values, resultLen, sort);
+
+        if(limit == 0) {
+            limit = 1;
+        }
+        
+        if (limit > resultLen - offset) {
+            limit = 0 > resultLen - offset ? 0 : resultLen - offset;
+        }
+       
+        Auction[] memory newAuctions = new Auction[] (resultLen > limit ? limit: resultLen);
+
+        if (resultLen > limit) {
+          for (uint256 i = 0; i < limit; i++) {
+            newAuctions[i] = values[offset+i];
+          }
+          return (newAuctions, offset + limit, resultLen);
+        } else {
+          return (values, offset + limit, resultLen);
+        }
+        
+  }
  
+  //Recommendation Auction
+  function getRecommendationAuctions() public view returns (Auction[] memory, uint256) {
+    uint256 totalLen = recommendAuctionIds.length;
+    Auction[] memory values = new Auction[] (totalLen);
+    uint256 resultLen = 0;
+
+    //auctionId is no zero.
+    //auction open, type count
+    for (uint256 i = 0; i < totalLen; i++) {
+      if(auctions[recommendAuctionIds[i]].auctionTypes.status == AuctionStatus.OPEN) {
+        values[resultLen] = auctions[i];
+        resultLen++;
+      }  
+    }
+    return (values, resultLen);
+  }
   //bids
   function getBids(uint256 auctionId) public view returns(Bid[] memory){
       return bidList[auctionId];
@@ -475,16 +635,17 @@ contract NAMarket is Ownable, ReentrancyGuard, ERC1155Receiver {
   function getUserAuctions(address seller) public view returns(Auction[] memory) {
     uint256 resultCount = 0;
 
-    for(uint256 i = 1; i < totalAuctionCount.current(); i++) {
+    for(uint256 i = 1; i <= totalAuctionCount.current(); i++) {
       if (auctions[i].seller == seller) {
         resultCount++;
       }
     }
     Auction[] memory values = new Auction[] (resultCount);
-
-    for(uint256 i = 1; i < totalAuctionCount.current(); i++) {
+    uint256 rInt = 0;
+    for(uint256 i = 1; i <= totalAuctionCount.current(); i++) {
       if (auctions[i].seller == seller) {
-        values[i-1] = auctions[i];
+        values[rInt] = auctions[i];
+        rInt++;
       }
     }
     return values;
@@ -506,18 +667,36 @@ contract NAMarket is Ownable, ReentrancyGuard, ERC1155Receiver {
     }
     return topSellerList;
   }
+  //string substring
+  function substring(string memory str, uint256 startIndex, uint256 endIndex) private pure returns (string memory) {
+        bytes memory strBytes = bytes(str);
+        bytes memory result = new bytes(endIndex-startIndex);
+        for(uint256 i = startIndex; i < endIndex; i++) {
+            result[i-startIndex] = strBytes[i];
+        }
+        return string(result);
+  }
+
   /* filter */
-  function sfilter(Auction[] memory values, uint256 category, string memory keyword) private pure returns (Auction[] memory) {
+  function sfilter(Auction[] memory values, uint256 category, string memory keyword) 
+    private pure returns (Auction[] memory) {
     Auction[] memory sValues = new Auction[](values.length);
 
-      for (uint256 i = 0; i < values.length; i++) {
-        if (keccak256(abi.encodePacked((values[i].auctionTitle))) 
-          == keccak256(abi.encodePacked((keyword)))) {
-          sValues[i] = values[i];
-        } 
+    bytes memory kBytes = bytes(keyword);
+    for (uint256 i = 0; i < values.length; i ++) {
+      bytes memory tBytes = bytes(values[i].auctionTitle);
+      for (uint256 j = 0; j < tBytes.length; j ++) {
+
+          if(keccak256(abi.encodePacked(substring(values[i].auctionTitle, j, 
+          tBytes.length < j+kBytes.length ? tBytes.length : j+kBytes.length))) 
+            == keccak256(abi.encodePacked(keyword))) {
+              sValues[i] = values[i];
+              break;
+          }
       }
-      sValues = cfilter(sValues, category);
-      return sValues;
+    }
+    sValues = cfilter(sValues, category);
+    return sValues;
 
   }
 
@@ -536,7 +715,7 @@ contract NAMarket is Ownable, ReentrancyGuard, ERC1155Receiver {
   }
 
   /*  sort  */
-  function sortMap(Auction[] memory arr, uint256 limit, Sort sort) private pure returns (Auction[] memory) {
+  function sortMap(Auction[] memory arr, uint256 limit, Sort sort) private view returns (Auction[] memory) {
     //sort
     Auction memory temp;
     for(uint256 i = 0; i < limit; i++) {
@@ -555,6 +734,12 @@ contract NAMarket is Ownable, ReentrancyGuard, ERC1155Receiver {
             }
           } else if (sort == Sort.ASC) {
             if(arr[i].currentPrice > arr[j].currentPrice) {
+                temp = arr[i];
+                arr[i] = arr[j];
+                arr[j] = temp;
+            }
+          } else if (sort == Sort.HOT) {
+            if( bidList[arr[i].auctionId].length < bidList[arr[j].auctionId].length) {
                 temp = arr[i];
                 arr[i] = arr[j];
                 arr[j] = temp;

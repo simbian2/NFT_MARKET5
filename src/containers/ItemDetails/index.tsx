@@ -1,7 +1,5 @@
 import { useEffect } from 'react';
-import { getMainWidth, handleTitle } from '../../utils';
-
-import { data1, data2 } from '../../data/data-containers/data-ItemDetails.js';
+import { getMainWidth, getTokenInfo, handleTitle } from '../../utils';
 
 import Navbar from '../../layouts/Head/Navbar';
 import Breadcrumb from '../../components/Breadcrumb';
@@ -18,11 +16,31 @@ import SectionCardDown from './SectionCardDown';
 import './ItemDetails.css';
 import { useParams } from 'react-router';
 import { useRecoilValue } from 'recoil';
-import selectedAuctionAtom from '../../atoms/selectedAuction';
+import React from 'react';
+import { IAuction } from '../../types';
+import contracts from '../../constants/contracts';
 
 const ItemDetailsContainer = () => {
   const { id }: { id?: string } = useParams();
-  const selectedAuction = useRecoilValue(selectedAuctionAtom);
+  const [auction, setAuction] = React.useState<IAuction>();
+
+  const getAuction = async () => {
+    try {
+      const result = await contracts.nftMarketContract.methods
+        .auctions(id)
+        .call();
+
+      const tokenInfo = await getTokenInfo(result.tokenId);
+
+      setAuction({ ...result, tokenInfo });
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
+  React.useEffect(() => {
+    getAuction();
+  }, []);
 
   useEffect(() => {
     // document.title = 'ItemDetails'
@@ -46,21 +64,12 @@ const ItemDetailsContainer = () => {
 
         <div className="container-fluid">
           <div className="row">
-            <CardImg
-              img={
-                selectedAuction
-                  ? selectedAuction.tokenInfo?.img
-                  : ItemDetailsitemDetails
-              }
-            />
+            {auction && <CardImg img={auction.tokenInfo?.img} />}
             <div className="col-lg-7">
-              <SectionCardUp
-                img1={ItemDetailsTeam2}
-                img2={ItemDetailsVisuals}
-              />
+              {auction && <SectionCardUp {...auction} />}
 
               <div className="row">
-                <SectionCardDown data1={data1} data2={data2} />
+                {auction && <SectionCardDown {...auction} />}
               </div>
             </div>
           </div>

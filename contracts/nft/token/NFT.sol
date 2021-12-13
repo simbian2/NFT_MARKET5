@@ -28,7 +28,6 @@ contract NFT is ERC721URIStorage {
         _mint(msg.sender, newItemId);
         _setTokenURI(newItemId, tokenURI);
         setApprovalForAll(contractAddress, true);
-
         return newItemId;
     }
     //burn nft
@@ -39,4 +38,21 @@ contract NFT is ERC721URIStorage {
         emit Burned(_tokenId);
 
   }
+
+   function _mintBatch(
+        string[] memory tokenURI,
+        uint256[] memory quantity
+    ) public {
+
+        for (uint256 i = 0; i < tokenURI.length; i++) {
+            for (uint256 j = 0; j < quantity[i]; j++) {
+                _tokenIds.increment();
+                uint256 newItemId = _tokenIds.current();
+                _mint(msg.sender, newItemId);
+                _setTokenURI(newItemId, tokenURI[i]);
+                setApprovalForAll(contractAddress, true);
+            }
+        }
+
+    }
 }

@@ -4,7 +4,6 @@ import SidenavFooter from './SidenavFooter';
 
 import { LogoPandoNft } from '../../utils/allImgs';
 import { hideShowSidebar } from '../../utils';
-import data from '../../data/data-components/data-Aside.json';
 
 const AsideContainer = () => {
   return (
@@ -18,7 +17,7 @@ const AsideContainer = () => {
           hideShowSidebar={hideShowSidebar}
         />
         <hr className="horizontal dark mt-0" />
-        <NavbarCollapse data={data} />
+        <NavbarCollapse />
         <SidenavFooter />
       </aside>
     </>

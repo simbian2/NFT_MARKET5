@@ -5,9 +5,9 @@ import { useRecoilValue } from 'recoil';
 import selectedAuctionAtom from '../../../../atoms/selectedAuction';
 import React from 'react';
 import contracts from '../../../../constants/contracts';
-import { IBid } from '../../../../types/index';
+import { IBid, IAuction } from '../../../../types/index';
 
-function SectionBids() {
+function SectionBids(auction: IAuction) {
   const { id }: { id?: string } = useParams();
   const item = data[parseInt(id!) - 1];
 

@@ -7,7 +7,7 @@ import Aside from './components/Aside';
 import {
   Contact,
   Explore,
-  Profile,
+  MyCollection,
   Authors,
   CreateItem,
   Home,
@@ -54,7 +54,7 @@ const App = () => {
         <Route path="/" exact component={Home} />
         <Route path="/contact" component={Contact} />
         <Route path="/explore" component={Explore} />
-        <Route path="/profile" component={Profile} />
+        <Route path="/mycollection" component={MyCollection} />
         <Route path="/authors" component={Authors} />
         <Route path="/createitem" component={CreateItem} />
         <Route path="/signin" component={SignIn} />

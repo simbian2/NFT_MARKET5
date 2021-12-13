@@ -37,11 +37,11 @@ const ProfileContainer = () => {
           </div>
           <div className="card card-body blur shadow-blur mx-4 mt-n6">
             <div className="row gx-4">
-              <SecAvatar img={ProfileBruce} />
+              {/* <SecAvatar img={ProfileBruce} /> */}
 
               <SecName />
 
-              <SecNavWrapper />
+              {/* <SecNavWrapper /> */}
             </div>
           </div>
         </div>

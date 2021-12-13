@@ -1,8 +1,9 @@
 import { useParams } from 'react-router-dom';
 import data from '../../../../data/data-components/data-SecNewListed.js';
 import ListTag from './ListTag';
+import { IAuction } from '../../../../types/index';
 
-function SectionHistory() {
+function SectionHistory(auction: IAuction) {
   const { id }: { id?: string } = useParams();
   const item = data[parseInt(id!) - 1];
 

@@ -15,10 +15,7 @@ function LiveAuctionsItem(props: IAuction) {
       <div
         className="card card-blog card-plain"
         style={{ textDecoration: 'none', cursor: 'pointer' }}
-        onClick={async () => {
-          setSelectedAuction(props);
-          history.push(`/itemdetails/${props.auctionId}`);
-        }}
+        onClick={async () => history.push(`/itemdetails/${props.auctionId}`)}
       >
         <div
           className="position-relative mb-30 img-fluid shadow border-radius-xl"

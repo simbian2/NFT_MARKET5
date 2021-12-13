@@ -1,15 +1,16 @@
 import SectionInfo from './SectionInfo';
 import SectionPrice from './SectionPrice';
 import SectionForm from './SectionForm';
+import { IAuction } from '../../../types';
 
-function SectionCardUp({ img1, img2 }) {
+function SectionCardUp(auction: IAuction) {
   return (
     <>
       <div className="col-12 mb-30 mt-s">
         <div className="card">
           <div className="card-body">
             <div className="row">
-              <SectionInfo img={img1} />
+              <SectionInfo {...auction} />
             </div>
           </div>
         </div>
@@ -19,7 +20,7 @@ function SectionCardUp({ img1, img2 }) {
         <div className="card">
           <div className="card-body p-3">
             <div className="row align-items-center">
-              <SectionPrice img={img2} />
+              <SectionPrice {...auction} />
 
               <SectionForm />
             </div>
