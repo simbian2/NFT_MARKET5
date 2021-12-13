@@ -3,6 +3,7 @@ import { useWeb3React } from '@web3-react/core';
 import { useInterval } from 'usehooks-ts';
 import ITag from '../../../components/ITag';
 import contracts from '../../../constants/contracts';
+import BigNumber from 'bignumber.js';
 
 function SecNavWrapper() {
   const { account } = useWeb3React();
@@ -70,7 +71,11 @@ function SecNavWrapper() {
               className="btn btn-white bg-light mb-0 w-100"
               onClick={withdraw}
             >
-              Withdraw
+              Withdraw (
+              {new BigNumber(userPrice)
+                .div(new BigNumber(10).pow(18))
+                .toString()}{' '}
+              ETH)
             </button>
           ) : null}
         </div>

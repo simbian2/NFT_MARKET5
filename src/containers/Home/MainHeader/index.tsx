@@ -1,6 +1,9 @@
 import { NavLink } from 'react-router-dom';
+import { useWeb3React } from '@web3-react/core';
 
 const MainHeader = () => {
+  const { account } = useWeb3React();
+
   return (
     <div className="container-fluid py-4">
       <div className="main-header">
@@ -12,9 +15,19 @@ const MainHeader = () => {
                 Digital Assets
               </h1>
               {/* <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nesciunt, deleniti, ducimus. Asperiores reiciendis eligendi magnam quas, repellendus. Voluptate repudiandae non.</p> */}
-              <NavLink to="/explore" className="btn btn-light mb-0">
-                Explore
-              </NavLink>
+              {account ? (
+                <NavLink to="/createitem" className="btn btn-light mb-0">
+                  Create Item
+                </NavLink>
+              ) : (
+                <button
+                  type="button"
+                  className="btn btn-light mb-0"
+                  onClick={() => alert('Connect your metamask!')}
+                >
+                  Create Item
+                </button>
+              )}
             </div>
           </div>
         </div>
