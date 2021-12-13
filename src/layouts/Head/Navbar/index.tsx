@@ -12,7 +12,7 @@ function Navbar() {
       id="navbarBlur"
     >
       <div className="container-fluid py-1 px-3">
-        <SecNav />
+        {/* <SecNav /> */}
 
         <div
           className="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4"
