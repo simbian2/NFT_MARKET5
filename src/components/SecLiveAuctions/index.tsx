@@ -12,7 +12,7 @@ function SecLiveAuctions() {
 
   const getAuctions = async () => {
     const auctions = await contracts.nftMarketContract.methods
-      .getOpenAuctions(1, 1, '', 0, 10)
+      .getOpenAuctions(0, 1, '', 0, 10)
       .call();
 
     console.log('userAuctions', auctions);
