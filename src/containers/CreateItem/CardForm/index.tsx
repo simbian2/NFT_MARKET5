@@ -161,7 +161,7 @@ const CardForm = ({ data }: { data: any }) => {
           onChange={(e) => setDescription(e.target.value)}
         />
 
-        <div className="form-check form-check-info text-left">
+        {/* <div className="form-check form-check-info text-left">
           <input
             id="agree"
             className="form-check-input"
@@ -172,7 +172,7 @@ const CardForm = ({ data }: { data: any }) => {
           <label htmlFor="agree" className="form-check-label">
             Transfer Copyright When Purchased?
           </label>
-        </div>
+        </div> */}
         <div className="text-center">
           <button
             disabled={isLoading}
