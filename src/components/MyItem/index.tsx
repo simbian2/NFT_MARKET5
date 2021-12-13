@@ -1,9 +1,7 @@
 import * as React from 'react';
-import { NavLink } from 'react-router-dom';
 import contracts from '../../constants/contracts';
 import addresses from '../../constants/addresses';
 import { useWeb3React } from '@web3-react/core';
-import { injectedConnector } from '../../connector/index';
 import Input from '../../containers/CreateItem/CardForm/Input';
 import BigNumber from 'bignumber.js';
 import { useRecoilState, useSetRecoilState } from 'recoil';
@@ -124,9 +122,9 @@ const MyItem: React.FunctionComponent<IMyItemProps> = (props) => {
       </NavLink> */}
         <div className="item-cont card-body px-1 pb-0">
           <p className="text-gradient text-dark mb-2 text-sm">#{props.id}</p>
-          <NavLink className="text-decoration-none" to="">
+          <div className="text-decoration-none">
             <h5>{props.title}</h5>
-          </NavLink>
+          </div>
           {/* <p className="mb-4 text-sm">
             Currenct Price : <span className="gradient-text">0 ETH</span>
           </p> */}

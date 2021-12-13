@@ -48,7 +48,10 @@ const MyAuctionItem: React.FunctionComponent<IMyAuctionItemProps> = (props) => {
           <p className="text-gradient text-dark mb-2 text-sm">
             #{props.tokenInfo?.id}
           </p>
-          <NavLink className="text-decoration-none" to="">
+          <NavLink
+            className="text-decoration-none"
+            to={`/itemdetails/${props.auctionId}`}
+          >
             <h5>{props.tokenInfo?.title}</h5>
           </NavLink>
           <p className="mb-0 text-sm">
