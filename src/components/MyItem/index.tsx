@@ -10,14 +10,9 @@ import { useRecoilState, useSetRecoilState } from 'recoil';
 import isApprovedAtom from '../../atoms/isApproved';
 import isAuctionFinishAtom from '../../atoms/isAuctionFinish';
 import moment from 'moment';
+import { IItem } from '../../types/index';
 
-interface IMyItemProps {
-  id: number;
-  title: string;
-  description: string;
-  img: string;
-  owner: string;
-}
+interface IMyItemProps extends IItem {}
 
 const MyItem: React.FunctionComponent<IMyItemProps> = (props) => {
   const { account } = useWeb3React();
@@ -67,16 +62,25 @@ const MyItem: React.FunctionComponent<IMyItemProps> = (props) => {
         props.id,
         new BigNumber(startingPrice)
           .times(new BigNumber(10).pow(18))
-          .toNumber(),
+          .toNumber()
+          .toFixed(0),
         title,
-        new BigNumber(buyNowPrice).times(new BigNumber(10).pow(18)).toNumber(),
+        new BigNumber(buyNowPrice)
+          .times(new BigNumber(10).pow(18))
+          .toNumber()
+          .toFixed(0),
         new Date(expiryDate).getTime(),
-        1,
+        props.category,
         1,
         1
       )
       .send({ from: account });
 
+    setIsCreateOpen(false);
+    setTitle('');
+    setStartingPrice(undefined);
+    setBuyNowPrice(undefined);
+    setExpiryDate('');
     setIsAuctionFinish(true);
 
     console.log(createAuction);

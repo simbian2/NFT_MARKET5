@@ -1,26 +1,8 @@
 import { NavLink } from 'react-router-dom';
+import { IAuction } from '../../../../types/index';
+import BigNumber from 'bignumber.js';
 
-function Card({
-  path1,
-  path2,
-  path3,
-  img1,
-  img2,
-  text1,
-  text2,
-  text3,
-  price,
-}: {
-  path1: any;
-  path2: any;
-  path3: any;
-  img1: any;
-  img2: any;
-  text1: any;
-  text2: any;
-  text3: any;
-  price: any;
-}) {
+function Card(auction: IAuction) {
   return (
     <div className="col-12 mb-15">
       <div className="card">
@@ -32,25 +14,35 @@ function Card({
                   <img
                     className="w-100 position-relative z-index-2 border-radius-lg"
                     alt=""
-                    src={img1}
+                    src={auction.tokenInfo?.img}
                   />
                 </div>
               </div>
             </div>
             <div className="col-lg-6">
               <div className="d-flex flex-column h-100">
-                <p className="mb-1 pt-2">{text1}</p>
-                <NavLink className="text-decoration-none" to={path1}>
-                  <h5 className="font-weight-bolder">{text2}</h5>
+                <p className="mb-1 pt-2">#{auction.tokenInfo?.id}</p>
+                <NavLink
+                  className="text-decoration-none"
+                  to={`/itemdetails/${auction.auctionId}`}
+                >
+                  <h5 className="font-weight-bolder">
+                    {auction.tokenInfo?.title}
+                  </h5>
                 </NavLink>
-                <p>{text3}</p>
+                <p>{auction.tokenInfo?.description}</p>
                 <p>
                   Currenct Price :{' '}
-                  <span className="gradient-text">{price} ETH</span>
+                  <span className="gradient-text">
+                    {new BigNumber(auction.currentPrice)
+                      .div(new BigNumber(10).pow(18))
+                      .toString()}{' '}
+                    ETH
+                  </span>
                 </p>
                 <div className="d-flex align-items-center justify-content-between">
                   <NavLink
-                    to={path2}
+                    to={`/itemdetails/${auction.auctionId}`}
                     className="btn btn-outline-primary btn-sm mb-0"
                   >
                     Buy Now

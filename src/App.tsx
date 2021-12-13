@@ -13,7 +13,7 @@ import {
   Home,
   SignIn,
   ConnectWallet,
-  Explore2,
+  Auction,
   ItemDetails,
   SignUp,
 } from './pages';
@@ -70,7 +70,7 @@ const App = () => {
         <Route path="/createitem" component={CreateItem} />
         <Route path="/signin" component={SignIn} />
         <Route path="/connectwallet" component={ConnectWallet} />
-        <Route path="/explore2" component={Explore2} />
+        <Route path="/auction" component={Auction} />
         <Route path="/itemdetails/:id" component={ItemDetails} />
         <Route path="/itemdetails" component={ItemDetails} />
         <Route path="/signup" component={SignUp} />

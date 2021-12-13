@@ -2,6 +2,7 @@ export interface IItem {
   id: number;
   title: string;
   description: string;
+  category: number;
   img: string;
   isApproved: boolean;
   owner: string;

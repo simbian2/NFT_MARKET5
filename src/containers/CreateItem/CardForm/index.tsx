@@ -11,6 +11,7 @@ import { utils } from 'ethers';
 import { Contract } from '@ethersproject/contracts';
 import web3 from '../../../connection/web3';
 import { AbiItem } from 'web3-utils';
+import createItemCategoryAtom from '../../../atoms/createItemCategory';
 
 const ipfs = create({
   host: 'ipfs.infura.io',
@@ -28,6 +29,7 @@ const CardForm = ({ data }: { data: any }) => {
   const [ipfsImage, setIpfsImage] = React.useState<string>('');
   const [agree, setAgree] = React.useState<boolean>(false);
   const [isLoading, setIsLoading] = React.useState<boolean>(false);
+  const createItemCategory = useRecoilValue(createItemCategoryAtom);
 
   const onDrop = React.useCallback((files: any) => {
     setBuffer(files[0]);
@@ -89,6 +91,10 @@ const CardForm = ({ data }: { data: any }) => {
           type: 'string',
           description: fileAdded.path,
         },
+        category: {
+          type: 'number',
+          description: createItemCategory,
+        },
       },
     };
 
@@ -127,6 +133,7 @@ const CardForm = ({ data }: { data: any }) => {
               src={`data:image/png;base64,${capturedFileBuffer.toString(
                 'base64'
               )}`}
+              style={{ maxWidth: '100%' }}
             />
           ) : (
             <button className="btn btn-outline-primary btn-sm mb-0">

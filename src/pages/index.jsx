@@ -8,7 +8,7 @@ import CreateItem from './CreateItem';
 
 import Explore from './Explore';
 
-import Explore2 from './Explore2';
+import Auction from './Auction';
 
 import Home from './Home';
 
@@ -26,7 +26,7 @@ export {
   Contact,
   CreateItem,
   Explore,
-  Explore2,
+  Auction,
   Home,
   ItemDetails,
   MyCollection,

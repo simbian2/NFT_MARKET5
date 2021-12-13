@@ -17,10 +17,10 @@ import CardTopSelling from './CardTopSelling';
 import CardIco from './CardIco';
 import './Explore2.css';
 
-const Explore2Container = () => {
+const AuctionContainer = () => {
   useEffect(() => {
-    // document.title = 'Explore2'
-    handleTitle('Explore2');
+    // document.title = 'Auction'
+    handleTitle('Auction');
     getMainWidth();
   }, []);
 
@@ -31,19 +31,16 @@ const Explore2Container = () => {
 
         <div className="container-fluid">
           <div className="page-header breadcrumb-header min-height-300 border-radius-xl mt-4 mb-30 Explore2IMG">
-            <Breadcrumb
-              text1="About New Items"
-              text2="It is time to start your own new experience on NFT Store"
-            />
+            <Breadcrumb text1="Auction" text2="" />
           </div>
         </div>
 
         <div className="container-fluid">
           <div className="row">
-            <CardNewListed data={data1} />
+            <CardNewListed />
 
             <div className="col-lg-4">
-              <CardFilter data3={data3} data4={data4} />
+              <CardFilter />
 
               {/* <CardTopSelling data={data2} /> */}
             </div>
@@ -60,4 +57,4 @@ const Explore2Container = () => {
   );
 };
 
-export default Explore2Container;
+export default AuctionContainer;

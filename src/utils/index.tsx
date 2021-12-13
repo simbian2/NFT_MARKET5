@@ -83,6 +83,7 @@ const getTokenInfo = async (id: number) => {
       id,
       title: metadata.properties.name.description,
       description: metadata.properties.description.description,
+      category: metadata.properties.category.description || 1,
       img: `https://ipfs.infura.io/ipfs/${metadata.properties.image.description}`,
       isApproved,
       owner,

@@ -48,6 +48,7 @@ const HomeContainer = () => {
             id: i,
             title: metadata.properties.name.description,
             description: metadata.properties.description.description,
+            category: metadata.properties.category.description || 1,
             img: `https://ipfs.infura.io/ipfs/${metadata.properties.image.description}`,
             isApproved,
             owner,
@@ -65,7 +66,7 @@ const HomeContainer = () => {
   };
 
   React.useEffect(() => {
-    getItems();
+    // getItems();
   }, []);
 
   return (
