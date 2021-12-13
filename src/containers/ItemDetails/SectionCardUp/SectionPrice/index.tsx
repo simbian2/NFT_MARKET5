@@ -5,9 +5,6 @@ import './SectionPrice.css';
 import BigNumber from 'bignumber.js';
 
 function SectionPrice(auction: IAuction) {
-  const { id }: { id?: string } = useParams();
-  const item = data[parseInt(id!) - 1];
-
   return (
     <div className="col-lg-6 mt-lg-0">
       <div className="card card-background shadow-none card-background-mask-primary">
@@ -20,7 +17,7 @@ function SectionPrice(auction: IAuction) {
             ></i>
           </div>
           <h5 className="text-white up mb-10p">Highest Bid</h5>
-          <p>{item.highestBid.placeBidDesc}</p>
+          <p>The highest bid at the end of the auction will win</p>
           <ul className="list-group mt-15p">
             <li className="list-group-item border-0 d-flex align-items-center px-2">
               {/* <NavLink to="/" className="avatar v2 mr-10">

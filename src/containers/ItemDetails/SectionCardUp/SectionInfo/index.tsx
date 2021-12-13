@@ -8,9 +8,6 @@ import { IAuction } from '../../../../types/index';
 
 function SectionInfo(auction: IAuction) {
   const { account } = useWeb3React();
-  const { id }: { id?: string } = useParams();
-
-  const item = data[parseInt(id!) - 1];
 
   const onBuyNow = async () => {
     const buyNowPrice = new BigNumber(parseInt(auction.buyNowPrice))
@@ -44,13 +41,19 @@ function SectionInfo(auction: IAuction) {
         <p className="text-bold mb-0">
           Currenct Price :{' '}
           <span className="gradient-text text-lg">
-            {(auction ? parseInt(auction.currentPrice) : 0) / 10 ** 18} ETH
+            {new BigNumber(auction.currentPrice)
+              .div(new BigNumber(10).pow(18))
+              .toString()}{' '}
+            ETH
           </span>
         </p>
         <p className="text-bold mb-30">
           Buy now Price :{' '}
           <span className="gradient-text text-lg">
-            {(auction ? parseInt(auction.buyNowPrice) : 0) / 10 ** 18} ETH
+            {new BigNumber(auction.buyNowPrice)
+              .div(new BigNumber(10).pow(18))
+              .toString()}{' '}
+            ETH
           </span>
         </p>
 
@@ -59,16 +62,16 @@ function SectionInfo(auction: IAuction) {
             <ul className="list-group">
               <li className="list-group-item border-0 ps-0 pt-0 text-sm">
                 <strong className="text-dark mr-10">Item Artist: </strong>
-                {item.itemArtist}
+                {auction.seller}
               </li>
-              <li className="list-group-item border-0 ps-0 text-sm">
+              {/* <li className="list-group-item border-0 ps-0 text-sm">
                 <strong className="text-dark mr-10">Created:</strong>{' '}
-                {item.created}
-              </li>
-              <li className="list-group-item border-0 ps-0 text-sm">
+                {item.created || ''}
+              </li> */}
+              {/* <li className="list-group-item border-0 ps-0 text-sm">
                 <strong className="text-dark">Item Size:</strong>{' '}
-                {item.itemSize}
-              </li>
+                {item.itemSize || ''}
+              </li> */}
             </ul>
           </div>
 
@@ -79,14 +82,14 @@ function SectionInfo(auction: IAuction) {
 	                <span className="author-num">1</span>
 	                <img src={img} alt="kal" className="border-radius-lg shadow" />
 	              </NavLink> */}
-                <div className="d-flex align-items-start flex-column justify-content-center">
+                {/* <div className="d-flex align-items-start flex-column justify-content-center">
                   <NavLink to="/">
                     <h6 className="author-name">{item.artist}</h6>
                   </NavLink>
                   <NavLink className="btn btn-link autho-link" to="/">
                     {item.artistId}
                   </NavLink>
-                </div>
+                </div> */}
               </li>
               {account && auction.seller !== account && (
                 <li className="list-group-item border-0 d-flex align-items-center px-0">
