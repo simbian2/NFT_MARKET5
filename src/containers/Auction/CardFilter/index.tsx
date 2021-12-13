@@ -5,8 +5,11 @@ import SectionHeading from '../../../components/SectionHeading';
 import { Explore2Icon3 } from '../../../utils/allImgs';
 import { useRecoilState } from 'recoil';
 import auctionCategoryAtom from '../../../atoms/auctionCategory';
+import auctionSortAtom from '../../../atoms/auctionSort';
 
+const sorts = ['ASC', 'DESC', 'NEW', 'END', 'HOT'];
 const categories = [
+  'All',
   'Art',
   'Sports',
   'Gaming',
@@ -17,6 +20,7 @@ const categories = [
 ];
 
 const CardFilter = () => {
+  const [auctionSort, setAuctionSort] = useRecoilState(auctionSortAtom);
   const [auctionCategory, setAuctionCategory] =
     useRecoilState(auctionCategoryAtom);
 
@@ -34,6 +38,28 @@ const CardFilter = () => {
         </div>
         <div className="card-body p-3">
           <h6 className="text-uppercase text-body text-xs font-weight-bolder mt-4">
+            Item Sort
+          </h6>
+          <ul className="list-group">
+            {sorts.map((sort, i: number) => (
+              <li key={i} className="list-group-item border-0 px-0">
+                <div className="form-check form-check-info text-left">
+                  <input
+                    id={sort}
+                    className="form-check-input"
+                    type="checkbox"
+                    value=""
+                    checked={auctionSort === i}
+                    onChange={(e) => e.target.checked && setAuctionSort(i)}
+                  />
+                  <label htmlFor={sort} className="form-check-label">
+                    {sort}
+                  </label>
+                </div>
+              </li>
+            ))}
+          </ul>
+          <h6 className="text-uppercase text-body text-xs font-weight-bolder mt-4">
             Item Category
           </h6>
           <ul className="list-group">
@@ -45,10 +71,8 @@ const CardFilter = () => {
                     className="form-check-input"
                     type="checkbox"
                     value=""
-                    checked={auctionCategory === i + 1}
-                    onChange={(e) =>
-                      e.target.checked && setAuctionCategory(i + 1)
-                    }
+                    checked={auctionCategory === i}
+                    onChange={(e) => e.target.checked && setAuctionCategory(i)}
                   />
                   <label htmlFor={category} className="form-check-label">
                     {category}

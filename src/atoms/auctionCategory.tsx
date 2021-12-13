@@ -2,7 +2,7 @@ import { atom } from 'recoil';
 
 const auctionCategoryAtom = atom<number>({
   key: 'auctionCategory',
-  default: 1,
+  default: 0,
 });
 
 export default auctionCategoryAtom;
