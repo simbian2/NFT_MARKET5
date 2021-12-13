@@ -4,7 +4,7 @@ function Breadcrumb({ text1, text2 }) {
       <span className="mask bg-gradient-primary opacity-6"></span>
       <div className="con-wrapper">
         <h2>{text1}</h2>
-        <p style={{ whiteSpace: 'pre' }}>{text2}</p>
+        <p style={{ whiteSpace: 'pre-line' }}>{text2}</p>
       </div>
     </>
   );
