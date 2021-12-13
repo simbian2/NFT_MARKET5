@@ -4,8 +4,15 @@ import { hideShowSidebar } from '../../../utils';
 import SecNav from './SecNav';
 import SecNavItem from './SecNavItem';
 import SecDropdown from './SecDropdown';
+import { useRecoilState } from 'recoil';
+import auctionKeywordAtom from '../../../atoms/auctionKeyword';
+import { useHistory } from 'react-router-dom';
 
 function Navbar() {
+  const history = useHistory();
+  const [auctionKeyword, setAuctionKeyword] =
+    useRecoilState(auctionKeywordAtom);
+
   return (
     <nav
       className="navbar navbar-main navbar-expand-lg px-0 mx-4 shadow-none border-radius-xl"
@@ -24,6 +31,13 @@ function Navbar() {
                 type="text"
                 className="form-control"
                 placeholder="Type here..."
+                value={auctionKeyword}
+                onChange={(e) => setAuctionKeyword(e.target.value)}
+                onKeyPress={(e) => {
+                  if (e.key === 'Enter') {
+                    history.push('/auction');
+                  }
+                }}
               />
             </div>
           </div>

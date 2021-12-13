@@ -8,14 +8,16 @@ import contracts from '../../../constants/contracts';
 import data from '../../../data/data-containers/data-Authors';
 import { IAuction } from '../../../types';
 import { getTokenInfo } from '../../../utils';
+import auctionKeywordAtom from '../../../atoms/auctionKeyword';
 
 const CardNewListed = () => {
   const auctionCategory = useRecoilValue(auctionCategoryAtom);
+  const auctionKeyword = useRecoilValue(auctionKeywordAtom);
   const [auctions, setAuctions] = React.useState<IAuction[]>([]);
 
   const getAuctions = async () => {
     const auctions = await contracts.nftMarketContract.methods
-      .getOpenAuctions(auctionCategory, 1, '', 0, 10)
+      .getOpenAuctions(auctionCategory, 1, auctionKeyword, 0, 10)
       .call();
 
     console.log('userAuctions', auctions);
@@ -38,7 +40,7 @@ const CardNewListed = () => {
 
   React.useEffect(() => {
     getAuctions();
-  }, [auctionCategory]);
+  }, [auctionCategory, auctionKeyword]);
 
   return (
     <div className="col-lg-8">
