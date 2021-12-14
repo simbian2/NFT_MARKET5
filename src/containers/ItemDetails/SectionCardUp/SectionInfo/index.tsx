@@ -68,7 +68,7 @@ function SectionInfo(auction: IAuction) {
               <li className="list-group-item border-0 ps-0 text-sm">
                 <strong className="text-dark mr-10">
                   <a
-                    href={`https://testnets.opensea.io/assets/${addresses.nft}/${auction.tokenInfo?.id}`}
+                    href={`https://opensea.io/assets/${addresses.nft}/${auction.tokenInfo?.id}`}
                     rel="noreferrer"
                     target="_blank"
                   >
